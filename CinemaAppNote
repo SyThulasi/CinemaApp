@@ -1,0 +1,52 @@
+The task is to develop a Cinema ticket reservation app and its back-end services (e.g.: bookmyshow / tickets.lk). This project is divided into two major sections as described in the high-level diagram below. You may choose one side of the project while one of your colleagues will work on the other side(s). You should develop your side of the project independently. However, you are expected to agree on APIs / Inter-back-end communication with other colleagues who are developing the other sides of the solution for all the sides to be integrated seamlessly into a working product. 
+
+Iam doing cinema side for the project
+
+Expected Functionalities: 
+-------------------------
+Create / edit Cinema profile 
+Cinema login by providing credentials 
+Create / edit Movies 
+Add / change seat inventory for the showtimes on the show days 
+Validate and confirm reservations 
+
+Technologies and Architecture: 
+------------------------------
+Back end – Java 8, Spring boot, and Gradle 
+Login – Spring Security 
+Database – Postgresql
+Front end – Ant Design Pro and React 
+Inter-back-end communication – Apache Kafka 
+Deployment – Docker (Dockerize all the back-end services and front-end apps.) 
+Repository and Version Control– Git and Bit Bucket 
+Architecture – Micro-service architecture 
+
+===============================================================================
+
+implement the login functionality
+    frontend part
+    back end part and store it to the database
+
+implement the back end for creat movies 
+    frontend part 
+    backend and database
+
+implement the edit movies
+    frontend will be the same as create movie
+    need to do some backend
+
+implement the seat functionalities (add or change the seat count according to the reservation for that show)
+    add seat count when create the movie
+    after that reduce the seat count according to the reservation
+    
+After all send a confirmation to the customer   
+===============================================================================
+
+Sign up
+    * Name
+    * City
+    * Phone number
+    * Email
+    * Password 
+    
+
