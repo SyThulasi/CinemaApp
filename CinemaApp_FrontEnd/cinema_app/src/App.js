@@ -1,9 +1,11 @@
-import Authentication from "./authentication/Authentication";
+
+import Login from "./login/Login";
+import Register from "./register/Register";
 
 function App() {
   return (
     <div className="App">
-      <Authentication />
+      <Login />
     </div>
   );
 }
