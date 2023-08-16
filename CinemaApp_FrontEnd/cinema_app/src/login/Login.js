@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "./context/AuthProvider";
 
 import axios from '../register/api/axios';
-const LOGIN_URL = '/auth';
+const LOGIN_URL = '/login';
 
 const Login = () => {
 
@@ -29,11 +29,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
+                { userName : user, password : pwd }
             );
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
@@ -45,6 +41,7 @@ const Login = () => {
             setSuccess(true);
         } catch (err) {
             if (!err?.response) {
+                console.log(err.response)
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');

@@ -7,12 +7,14 @@ import axios from './api/axios';
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const PHONENO_REGEX= /^\+[1-9]{1}[0-9]{3,14}$/;
-const REGISTER_URL = '/register';
 
+const REGISTER_URL = '/save';
 
 const Register = () => {
+
     const userRef = useRef();
     const errRef = useRef();
+
 
     const [cinemaName, setCinemaName] = useState('');
     const [cinemaNameFocus, setCinemaNameFocus] = useState(false);
@@ -38,6 +40,8 @@ const Register = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+
+
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -54,6 +58,9 @@ const Register = () => {
     useEffect(() => {
         setErrMsg('');
     }, [user, pwd, matchPwd])
+    
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,11 +73,13 @@ const Register = () => {
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
+                { 
+                    cinemaName : cinemaName,
+                    city : city,
+                    phoneNo : phoneNo,
+                    userName: user, 
+                    password : pwd 
+                },
             );
             console.log(response?.data);
             console.log(response?.accessToken);
@@ -92,6 +101,8 @@ const Register = () => {
             errRef.current.focus();
         }
     }
+
+
 
     return (
         <>
@@ -125,7 +136,6 @@ const Register = () => {
                         <input
                             type="text"
                             id="city"
-                            ref={userRef}
                             autoComplete="off"
                             onChange={(e) => setCity(e.target.value)}
                             value={city}
@@ -137,7 +147,6 @@ const Register = () => {
                         <input
                             type="text"
                             id="phoneNo"
-                            ref={userRef}
                             autoComplete="off"
                             onChange={(e) => setphoneNo(e.target.value)}
                             value={phoneNo}
@@ -153,7 +162,7 @@ const Register = () => {
                         <input
                             type="text"
                             id="username"
-                            ref={userRef}
+
                             autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}

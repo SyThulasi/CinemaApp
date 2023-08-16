@@ -1,16 +1,18 @@
 package Responce;
 
-public class LoginResponce {
+public class LoginResponse {
 
     String message;
     Boolean status;
 
-    public LoginResponce(String message, Boolean status) {
+
+
+    public LoginResponse(String message, Boolean status) {
         this.message = message;
         this.status = status;
     }
 
-    public LoginResponce() {
+    public LoginResponse() {
     }
 
     public String getMessage() {

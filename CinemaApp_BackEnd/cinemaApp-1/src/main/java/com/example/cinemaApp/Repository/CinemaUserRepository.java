@@ -11,4 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CinemaUserRepository extends JpaRepository<CinemaUser,Integer> {
 
+    CinemaUser findByUserName(String userName);
+
+    Optional<CinemaUser> findOneByUserNameAndPassword(String userName, String encodedPassword);
 }
