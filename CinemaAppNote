@@ -49,4 +49,23 @@ Sign up
     * Email
     * Password 
     
+    
+================================================================================
+1. Home page 
+    = Nav bar
+        - Name
+        - Home
+            + image with small paragraph (always)
+            + current movies grid view (after login)
+        - Movies
+            + current movies
+            + create movie button
+        - Log in
+        - user icon (after login)
+            + edit user
+            + logout
+    = view movie 
+        - edit movie
+        
+      
 
