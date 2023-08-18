@@ -1,7 +1,7 @@
 .form1 {
-    display: flex; /* Use flexbox layout */
-    justify-content: center; /* Horizontally center the items */
-    align-items: center; /* Vertically center the items */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
   }
 
   .button1{

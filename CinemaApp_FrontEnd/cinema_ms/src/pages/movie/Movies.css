@@ -1,0 +1,45 @@
+.custom-section3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      width: 100%;/* Set your desired height here */
+      background-image: url('/public/Images/background.jpg');
+      backdrop-filter: blur(5px);
+    }
+
+    .movie-album-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px; /* Adjust the value as needed */
+    }
+    
+    .movie-album {
+      flex: 1 0 calc(33.33% - 20px); /* Adjust for equal-width columns with spacing */
+    }
+    
+  
+  
+    .image-overlay1 {
+      align-items: center;
+      height: 100%;
+      color: white;
+      text-align: center;
+    }
+    
+    .image-overlay1 h2 {
+      font-size: 2rem;
+      margin: 10px;
+      padding-bottom: 20px;
+
+    }
+    
+  
+    
+    
+    
+    
+    
+    
+    

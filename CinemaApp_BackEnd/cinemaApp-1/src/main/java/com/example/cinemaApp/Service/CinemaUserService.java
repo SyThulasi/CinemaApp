@@ -12,4 +12,6 @@ public interface CinemaUserService {
     public String register(CinemaUserDTO cinemaUserDTO);
 
     LoginResponse loginEmployee(LoginDTO loginDTO);
+
+
 }

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 750px;
+    height: 900px;
     background-image: url('/public/Images/background.jpg');
     backdrop-filter: blur(10px);
     color: white;
@@ -50,6 +50,7 @@ button {
 }
 
 .instructions {
+    max-width: 300px;
     font-size: 0.75rem;
     border-radius: 0.5rem;
     background: #000;

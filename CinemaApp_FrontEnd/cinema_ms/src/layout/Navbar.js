@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Navbar.css"
+import "./Navbar.css";
 export default function () {
-
   const navigate = useNavigate();
 
   function handleLoginClick(path) {
     navigate(path);
-  }  
+  }
 
   return (
     <div>
@@ -39,25 +38,36 @@ export default function () {
                   Movies
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/seat">
+                  Seat Inventory
+                </a>
+              </li>
             </ul>
-          
-            <div class="form1" >
+
+            <div class="form1">
               <button
                 class="btn btn-outline-danger button1"
                 type="submit"
-                onClick={(e) =>handleLoginClick("/login")}
+                onClick={(e) => handleLoginClick("/login")}
               >
                 Log IN
               </button>
               <button
+                class="btn btn-outline-danger button1"
+                type="submit"
+                onClick={(e) => handleLoginClick("/edituser")}
+              >
+                Edit User
+              </button>
+              <button
                 class="btn btn-outline-danger pr-10"
                 type="submit"
-                onClick={(e) =>handleLoginClick("/register")}
+                onClick={(e) => handleLoginClick("/register")}
               >
                 Register
               </button>
             </div>
-            
           </div>
         </div>
       </nav>

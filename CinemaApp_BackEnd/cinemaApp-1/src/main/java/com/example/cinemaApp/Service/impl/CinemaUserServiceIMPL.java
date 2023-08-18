@@ -42,6 +42,7 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
         return cinemaUser.getCinemaName();
     }
     CinemaUserDTO cinemaUserDTO;
+
     @Override
     public LoginResponse loginEmployee(LoginDTO loginDTO) {
         String msg = "";
@@ -64,6 +65,7 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
             return new LoginResponse("User not exits", false);
         }
     }
+
 
 
 }

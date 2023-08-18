@@ -1,11 +1,15 @@
 import { useRef, useState, useEffect, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import AuthContext from "./context/AuthProvider";
 import "./Login.css"
 import axios from './api/axios';
 const LOGIN_URL = '/login';
 
+
+
 const Login = () => {
 
+    const navigate = useNavigate();
     const { setAuth } = useContext(AuthContext);
     
     const userRef = useRef();
@@ -35,10 +39,11 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
-            setSuccess(true);
+            navigate('/home');
+            // setAuth({ user, pwd, roles, accessToken });
+            // setUser('');
+            // setPwd('');
+            // setSuccess(true);
         } catch (err) {
             if (!err?.response) {
                 console.log(err.response)

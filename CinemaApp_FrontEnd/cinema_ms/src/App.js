@@ -7,6 +7,8 @@ import Movies from './pages/movie/Movies';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Register from'./pages/register/Register'
+import Seat from './pages/seat/Seat';
+import EditUser from './pages/register/EditUser';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/seat" element={<Seat/>} />
+        <Route path="/edituser" element={<EditUser/>} />
       </Routes>
     </Router>
   );
