@@ -3,6 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './api/axios';
 import './Register.css'
+import {useNavigate} from "react-router-dom"
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -16,15 +17,13 @@ const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
 
+    const navigate = useNavigate();
 
     const [cinemaName, setCinemaName] = useState('');
-    const [cinemaNameFocus, setCinemaNameFocus] = useState(false);
 
     const [city, setCity] = useState('');
-    const [cityFocus, setCityFocus] = useState(false);
 
     const [phoneNo, setphoneNo] = useState('');
-    const [phoneNoFocus, setphoneNoFocus] = useState(false);
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -65,13 +64,15 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if button enabled with JS hack
+
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
+
         if (!v1 || !v2) {
             setErrMsg("Invalid Entry");
             return;
         }
+
         try {
             const response = await axios.post(REGISTER_URL,
                 { 
@@ -82,16 +83,9 @@ const Register = () => {
                     password : pwd 
                 },
             );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
-            setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setUser('');
-            setPwd('');
-            setMatchPwd('');
-        } catch (err) {
+            navigate("/home")
+        } 
+        catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 409) {
@@ -145,8 +139,6 @@ const Register = () => {
                             onChange={(e) => setphoneNo(e.target.value)}
                             value={phoneNo}
                             required
-                            onFocus={() => setphoneNoFocus(true)}
-                            onBlur={() => setphoneNoFocus(false)}
                         />
                         <label htmlFor="username">
                             Username:

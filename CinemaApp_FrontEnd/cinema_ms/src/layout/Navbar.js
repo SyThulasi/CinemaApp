@@ -1,8 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Navbar.css";
+
 export default function () {
   const navigate = useNavigate();
+
+  const { currentUser } = useSelector((state) => state.user);
 
   function handleLoginClick(path) {
     navigate(path);
@@ -45,28 +49,39 @@ export default function () {
               </li>
             </ul>
 
-            <div class="form1">
-              <button
-                class="btn btn-outline-danger button1"
-                type="submit"
-                onClick={(e) => handleLoginClick("/login")}
-              >
-                Log IN
-              </button>
-              <button
-                class="btn btn-outline-danger button1"
-                type="submit"
-                onClick={(e) => handleLoginClick("/edituser")}
-              >
-                Edit User
-              </button>
-              <button
-                class="btn btn-outline-danger pr-10"
-                type="submit"
-                onClick={(e) => handleLoginClick("/register")}
-              >
-                Register
-              </button>
+            <div class="form1 ">
+              {currentUser ? (
+                <>
+                  {/* <a class="nav-link active" aria-current="page" href="/home">
+                  {currentUser.cinemaName}
+                  </a> */}
+                  <button
+                    class="btn btn-outline-danger button1"
+                    type="submit"
+                    onClick={(e) => handleLoginClick("/edituser")}
+                  >
+                    Edit User
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    class="btn btn-outline-danger button1"
+                    type="submit"
+                    onClick={(e) => handleLoginClick("/login")}
+                  >
+                    Log IN
+                  </button>
+
+                  <button
+                    class="btn btn-outline-danger pr-10"
+                    type="submit"
+                    onClick={(e) => handleLoginClick("/register")}
+                  >
+                    Register
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

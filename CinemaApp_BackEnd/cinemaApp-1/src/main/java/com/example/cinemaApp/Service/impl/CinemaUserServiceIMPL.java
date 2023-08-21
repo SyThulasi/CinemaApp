@@ -1,6 +1,5 @@
 package com.example.cinemaApp.Service.impl;
 
-import Responce.LoginResponse;
 import com.example.cinemaApp.DTO.CinemaUserDTO;
 import com.example.cinemaApp.DTO.LoginDTO;
 import com.example.cinemaApp.Entity.CinemaUser;
@@ -44,7 +43,7 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
     CinemaUserDTO cinemaUserDTO;
 
     @Override
-    public LoginResponse loginEmployee(LoginDTO loginDTO) {
+    public Optional<CinemaUser> loginEmployee(LoginDTO loginDTO) {
         String msg = "";
         CinemaUser cinemaUser1 = cinemaUserRepository.findByUserName(loginDTO.getUserName());
         if (cinemaUser1 != null) {
@@ -54,16 +53,18 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
             if (isPwdRight) {
                 Optional<CinemaUser> cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
                 if (cinemaUser.isPresent()) {
-                    return new LoginResponse("Login Success", true);
+//                    return new LoginResponse("Login Success", true);
+                    return cinemaUser;
                 } else {
-                    return new LoginResponse("Login Failed", false);
+//                    return new LoginResponse("Login Failed", false);
                 }
             } else {
-                return new LoginResponse("password Not Match", false);
+//                return new LoginResponse("password Not Match", false);
             }
         }else {
-            return new LoginResponse("User not exits", false);
+//            return new LoginResponse("User not exits", false);
         }
+        return null;
     }
 
 

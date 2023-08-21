@@ -1,16 +1,19 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginFailure, loginStart, loginSuccess } from "/home/thulasiyan/Documents/CinemaApp/CinemaApp_FrontEnd/cinema_ms/src/redux/userSlice";
 import AuthContext from "./context/AuthProvider";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import axios from './api/axios';
 const LOGIN_URL = '/login';
 
 
-
 const Login = () => {
 
-    const navigate = useNavigate();
     const { setAuth } = useContext(AuthContext);
+
+    const { currentUser } = useSelector((state) => state.user);
     
     const userRef = useRef();
     const errRef = useRef();
@@ -20,6 +23,7 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -28,34 +32,26 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        dispatch(loginStart());
         try {
             const response = await axios.post(LOGIN_URL,
                 { userName : user, password : pwd }
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            navigate('/home');
-            // setAuth({ user, pwd, roles, accessToken });
-            // setUser('');
-            // setPwd('');
-            // setSuccess(true);
-        } catch (err) {
-            if (!err?.response) {
-                console.log(err.response)
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed');
+            dispatch(loginSuccess(response.data));
+            if (currentUser) {
+                navigate('/home')
             }
-            errRef.current.focus();
+
+        } catch (err) {
+            dispatch(loginFailure());
+
         }
     }
 

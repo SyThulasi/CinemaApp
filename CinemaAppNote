@@ -49,8 +49,21 @@ Sign up
     * Email
     * Password 
     
+===============================================================================
     
-================================================================================
+Movie Details
+    * id
+    * Movie name
+    * Movie description
+    * lanquage
+    * Duration
+    * release date
+    * show dates
+    * show starting times
+    * screen name
+    * number of seats(with  category)
+    
+===============================================================================
 1. Home page 
     = Nav bar
         - Name

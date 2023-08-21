@@ -3,6 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './api/axios';
 import './Register.css'
+import { useSelector } from "react-redux";
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -13,24 +14,28 @@ const REGISTER_URL = '/save';
 
 const EditUser = () => {
 
+    const { currentUser } = useSelector((state) => state.user);
+
     const userRef = useRef();
     const errRef = useRef();
 
     // const {id} =  useParam()   
 
 
-    const [cinemaName, setCinemaName] = useState('');
+    const [cinemaName, setCinemaName] = useState(currentUser.cinemaName);
     const [cinemaNameFocus, setCinemaNameFocus] = useState(false);
 
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState(currentUser.city);
     const [cityFocus, setCityFocus] = useState(false);
 
-    const [phoneNo, setphoneNo] = useState('');
+    const [phoneNo, setphoneNo] = useState(currentUser.phoneNo);
     const [phoneNoFocus, setphoneNoFocus] = useState(false);
 
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(currentUser.userName);
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
+
+    const [oldPwd, setOldPwd] = useState('');
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -80,8 +85,7 @@ const EditUser = () => {
                     cinemaName : cinemaName,
                     city : city,
                     phoneNo : phoneNo,
-                    userName: user, 
-                    password : pwd 
+                    userName: user
                 },
             );
             console.log(response?.data);
@@ -186,13 +190,8 @@ const EditUser = () => {
                         <input
                             type="password"
                             id="oldPassword"
-                            // onChange={(e) => setPwd(e.target.value)}
-                            // value={pwd}
-                            // required
-                            // aria-invalid={validPwd ? "false" : "true"}
-                            // aria-describedby="pwdnote"
-                            // onFocus={() => setPwdFocus(true)}
-                            // onBlur={() => setPwdFocus(false)}
+                            onChange={(e) => setOldPwd(e.target.value)}
+                            value={oldPwd}
                         />
 
                         <label htmlFor="password">
@@ -205,7 +204,6 @@ const EditUser = () => {
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
-                            required
                             aria-invalid={validPwd ? "false" : "true"}
                             aria-describedby="pwdnote"
                             onFocus={() => setPwdFocus(true)}
@@ -229,7 +227,6 @@ const EditUser = () => {
                             id="confirm_pwd"
                             onChange={(e) => setMatchPwd(e.target.value)}
                             value={matchPwd}
-                            required
                             aria-invalid={validMatch ? "false" : "true"}
                             aria-describedby="confirmnote"
                             onFocus={() => setMatchFocus(true)}
@@ -240,15 +237,8 @@ const EditUser = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button >Update Your Profile</button>
                     </form>
-                    <p>
-                        Already registered?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="/login">Sign In</a>
-                        </span>
-                    </p>
                 </section>
            
         </section>

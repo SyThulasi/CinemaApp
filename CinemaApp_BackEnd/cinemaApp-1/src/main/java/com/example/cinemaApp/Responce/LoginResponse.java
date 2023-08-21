@@ -1,4 +1,4 @@
-package Responce;
+package com.example.cinemaApp.Responce;
 
 public class LoginResponse {
 

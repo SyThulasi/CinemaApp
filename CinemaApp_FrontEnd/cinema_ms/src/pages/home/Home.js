@@ -1,7 +1,9 @@
 import React from "react";
 import "./Home.css"
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <section className="custom-section">
       <div className="col-12 position-relative d-flex align-items-center justify-content-center">

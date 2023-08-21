@@ -8,6 +8,7 @@
     }
 
     .movie-album-container {
+      padding-top: 20px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -28,13 +29,8 @@
       text-align: center;
     }
     
-    .image-overlay1 h2 {
-      font-size: 2rem;
-      margin: 10px;
-      padding-bottom: 20px;
 
-    }
-    
+
   
     
     
