@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-.custom-section2 {
+.custom-section4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 900px;
+    height: 1200px;
     background-image: url('/public/Images/background.jpg');
+    /* background-color: #000; */
     backdrop-filter: blur(10px);
     color: white;
   }
