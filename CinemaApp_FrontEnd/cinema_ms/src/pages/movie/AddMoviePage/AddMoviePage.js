@@ -179,7 +179,7 @@ const AddMoviePage = () => {
             type="text"
             id="duration"
             name="duration"
-            defaultValue="169"
+            placeholder="xxx"
             step="900"
           />
 
@@ -212,7 +212,7 @@ const AddMoviePage = () => {
 
           <label htmlFor="phoneNo">Add Show Times:</label>
 
-          <Form.Item label="Show times" name="showDay">
+          <Form.Item name="showDay">
             <ShowTimes label="Show times" onDateChange={handleShowTimes} />
             {showTimeArray.map((country) => (
               <Alert message={JSON.stringify(country)} type="success" />

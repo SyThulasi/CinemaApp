@@ -61,10 +61,16 @@ function ShowCustomCalendar(props) {
     borderRadius: token.borderRadiusLG,
   };
   
+const handleDateSelect = (date) => {
+  console.log("Selected Date:", date.format("YYYY-MM-DD"));
+  setDate(date.format("YYYY-MM-DD"));
+};
+
   return (
     <div style={wrapperStyle}>
       <Calendar
         fullscreen={false}
+        onSelect={handleDateSelect}
         headerRender={({ value, type, onChange, onTypeChange }) => {
           const start = 0;
           const end = 12;
@@ -94,16 +100,12 @@ function ShowCustomCalendar(props) {
             );
           }
 
-
-
-
           return (
             <div
               style={{
                 padding: 5,
               }}
             >
-             
               <Row gutter={8}>
                 <Col>
                   <Select
