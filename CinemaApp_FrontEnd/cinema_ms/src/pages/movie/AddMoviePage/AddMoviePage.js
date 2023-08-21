@@ -31,8 +31,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../../register/api/axios";
 import "./AddMoviePage.css";
 import { useNavigate } from "react-router-dom";
-import ShowCustomCalendar from "./ShowCustomCalender";
-import ShowTimes from "./ShowTimes";
 
 const REGISTER_URL = "/save";
 
@@ -94,24 +92,6 @@ const AddMoviePage = () => {
     userRef.current.focus();
   }, []);
 
-  //------------------------------------------------------------------------------
-
-  const [showArray, setShowArray] = useState([]);
-  const [showTimeArray, setShowTimeArray] = useState([]);
-
-  const handleShowDaysChange = (newElement) => {
-    const newArray = [...showArray, newElement];
-    setShowArray(newArray);
-    console.log(showArray);
-  };
-
-  const handleShowTimes = (newElement) => {
-    const newArray = [...showTimeArray, newElement];
-    setShowTimeArray(newArray);
-  };
-
-  // ------------------------------------------------------------------------------------------
-
   const handleSubmit = async (e) => {
     // e.preventDefault();
     // try {
@@ -127,7 +107,7 @@ const AddMoviePage = () => {
   };
 
   return (
-    <section className="custom-section4 center">
+    <section className="custom-section2 center">
       <section className="custom-container">
         <p
           ref={errRef}
@@ -173,51 +153,25 @@ const AddMoviePage = () => {
             ))}
           </select>
 
-          <label htmlFor="phoneNo">Duration (Minutes):</label>
+          <label htmlFor="phoneNo">Duration:</label>
 
           <input
             type="text"
             id="duration"
             name="duration"
-            defaultValue="169"
+            defaultValue="02:30"
             step="900"
           />
 
           <label htmlFor="phoneNo">Release Date:</label>
           <input
-            type="date"
+            type="text"
             id="releaseDate"
             autoComplete="off"
             onChange={(e) => setReleaseDate(e.target.value)}
             value={releaseDate}
             required
           />
-          <label htmlFor="phoneNo">Add Show Dates:</label>
-          <Form.Item
-            name="showDay"
-            rules={[
-              {
-                required: false,
-                message: "Please input movie show days!",
-              },
-            ]}
-          >
-            <ShowCustomCalendar
-              label="Show Days"
-              onDateChange={handleShowDaysChange}
-            />
-
-            {/* <Alert message={date.toString()} type="success" /> */}
-          </Form.Item>
-
-          <label htmlFor="phoneNo">Add Show Times:</label>
-
-          <Form.Item label="Show times" name="showDay">
-            <ShowTimes label="Show times" onDateChange={handleShowTimes} />
-            {showTimeArray.map((country) => (
-              <Alert message={JSON.stringify(country)} type="success" />
-            ))}
-          </Form.Item>
 
           {/* <label htmlFor="username">
                             Username:
