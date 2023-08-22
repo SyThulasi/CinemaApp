@@ -1,17 +1,13 @@
-package com.example.cinemaApp.Entity;
+package com.example.cinemaApp.DTO;
 
-import jakarta.persistence.*;
+import com.example.cinemaApp.Entity.CinemaUser;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "Movie")
-public class Movie {
+public class MovieDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int movieID;
-
     private String movieName;
     private String description;
     private String language;
@@ -20,12 +16,9 @@ public class Movie {
     private String imgURL;
     private List<String> showDates;
     private List<String> showTimes;
-
-    @ManyToOne
-    @JoinColumn(name = "cinema_id")
     private CinemaUser cinemaUser;
 
-    public Movie(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, List<String> showDates, List<String> showTimes, CinemaUser cinemaUser) {
+    public MovieDTO(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, List<String> showDates, List<String> showTimes, CinemaUser cinemaUser) {
         this.movieID = movieID;
         this.movieName = movieName;
         this.description = description;
@@ -38,7 +31,7 @@ public class Movie {
         this.cinemaUser = cinemaUser;
     }
 
-    public Movie() {
+    public MovieDTO() {
     }
 
     public int getMovieID() {
@@ -123,7 +116,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" +
+        return "MovieDTO{" +
                 "movieID=" + movieID +
                 ", movieName='" + movieName + '\'' +
                 ", description='" + description + '\'' +
