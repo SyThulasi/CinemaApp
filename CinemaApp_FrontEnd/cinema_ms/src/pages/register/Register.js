@@ -8,7 +8,6 @@ import {useNavigate} from "react-router-dom"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const PHONENO_REGEX= /^\+[1-9]{1}[0-9]{3,14}$/;
 
 const REGISTER_URL = '/save';
 
@@ -38,9 +37,6 @@ const Register = () => {
     const [matchFocus, setMatchFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
-
-
 
     useEffect(() => {
         userRef.current.focus();

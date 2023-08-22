@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import { useDispatch } from "react-redux";
-import { loginFailure, loginStart, loginSuccess } from "/home/thulasiyan/Documents/CinemaApp/CinemaApp_FrontEnd/cinema_ms/src/redux/userSlice";
+import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
 import AuthContext from "./context/AuthProvider";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
