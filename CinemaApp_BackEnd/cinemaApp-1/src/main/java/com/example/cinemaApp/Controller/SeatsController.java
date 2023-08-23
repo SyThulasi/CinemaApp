@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.cinemaApp.DTO.SeatsDTO;
 
 @RestController
-@RequestMapping("api/v1/Seats")
-@CrossOrigin
+@RequestMapping("api/v1/cinemaUser")
+@CrossOrigin( allowedHeaders = {})
 public class SeatsController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class SeatsController {
         this.seatService = seatService;
     }
 
-    @PostMapping(path = "/save")
+    @PostMapping(path = "/Seats/save")
     public  int saveSeatType(@RequestBody SeatsDTO seatsDTO){
 
         int id = seatService.saveSeat(seatsDTO);
