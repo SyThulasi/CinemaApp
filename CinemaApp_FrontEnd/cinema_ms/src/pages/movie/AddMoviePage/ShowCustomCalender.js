@@ -24,25 +24,17 @@ function ShowCustomCalendar(props) {
   const [oneshow, setOneshow] = useState(null);
   const [showArray, setShowArray] = useState([]);
 
-  // const handleShowtime = (time, timeString) => {
-  //   console.log("Selected Time:", time);
-  //   console.log("Formatted Time:", timeString);
-  //   setOneshow(timeString);
-  // };
+  const handleShowtime = (time, timeString) => {
+    console.log("Selected Time:", time);
+    console.log("Formatted Time:", timeString);
+    setOneshow(timeString);
+  };
 
-  // const addShow = () => {
-  //   const newArray = [...showArray, oneshow];
-  //   setShowArray(newArray);
-  //   console.log(showArray);
-  // };
-
-  //   const onFinish = (values) => {
-  //     console.log(values.showTime);
-  //   };
-
-  //   const onFinishFailed = () => {
-  //     console.log("erro");
-  //   };
+  const addShow = () => {
+    const newArray = [...showArray, oneshow];
+    setShowArray(newArray);
+    console.log(showArray);
+  };
 
   const onPanelChange = (value, mode) => {
     console.log(value.format("YYYY-MM-DD"), mode);
@@ -54,6 +46,15 @@ function ShowCustomCalendar(props) {
       showTimeArray: showArray,
     };
     props.onDateChange(date);
+  };
+
+
+  const onFinish = (values) => {
+    console.log(values.showTime);
+  };
+
+  const onFinishFailed = () => {
+    console.log("erro");
   };
 
   const wrapperStyle = {

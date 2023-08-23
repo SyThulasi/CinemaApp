@@ -20,16 +20,21 @@ import {
   message,
   TimePicker,
 } from "antd";
-
+import dayjs from "dayjs";
 import { useRef, useState, useEffect } from "react";
+import {
+  faCheck,
+  faTimes,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../../register/api/axios";
 import "./AddMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import ShowCustomCalendar from "./ShowCustomCalender";
 import ShowTimes from "./ShowTimes";
-import { useSelector } from "react-redux";
-const REGISTER_URL = "/Movies/save";
+
+const REGISTER_URL = "/save";
 
 const languageList = [
   "English",
@@ -67,7 +72,6 @@ const languageList = [
 const format = "HH:mm";
 
 const AddMoviePage = () => {
-
   const userRef = useRef();
   const errRef = useRef();
 
@@ -89,11 +93,8 @@ const AddMoviePage = () => {
   useEffect(() => {
     userRef.current.focus();
   }, []);
-  //-------------------------------------------------------------------------------------------
 
-  const { currentUser } = useSelector((state) => state.user);
-
-  //----------------------------Date and Time Functions----------------------------------------
+  //------------------------------------------------------------------------------
 
   const [showArray, setShowArray] = useState([]);
   const [showTimeArray, setShowTimeArray] = useState([]);
@@ -109,35 +110,22 @@ const AddMoviePage = () => {
     setShowTimeArray(newArray);
   };
 
-  // -----------------------------Handle Submit--------------------------------------------------
+  // ------------------------------------------------------------------------------------------
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Clicked")
-    try {
-      console.log("Clicked1");
-      const response = await axios.post(
-        `http://localhost:8090/api/v1/cinemaUser/Movie/save`,
-        {
-          cinema_id: currentUser.cinema_id,
-          duration_minutes: duration,
-          release_date: releaseDate,
-          description: description,
-          imgurl: "../../public/Images/jailer.jpg",
-          language: language,
-          movie_name: movieName,
-          show_dates: showArray,
-          show_times: showTimeArray,
-        }
-      );
-      console.log("Clicked2");
-      navigate("/movies");
-    } catch (err) {console.log(err);}
+    // e.preventDefault();
+    // try {
+    //     const response = await axios.post(REGISTER_URL,
+    //         {
+    //         },
+    //     );
+    //     navigate("/home")
+    // }
+    // catch (err) {
+    //     errRef.current.focus();
+    // }
   };
 
-
-  //--------------------------------------------------------------------------------------------
-  
   return (
     <section className="custom-section4 center">
       <section className="custom-container">
@@ -192,8 +180,6 @@ const AddMoviePage = () => {
             id="duration"
             name="duration"
             placeholder="xxx"
-            onChange={(e) => setDuration(e.target.value)}
-            value={duration}
             step="900"
           />
 
@@ -233,6 +219,9 @@ const AddMoviePage = () => {
             ))}
           </Form.Item>
 
+          
+
+          
           {/* <label htmlFor="username">
                             Username:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />

@@ -23,7 +23,7 @@ function ShowTimes(props) {
 
   const wrapperStyle = {
     width: 300,
-    borderRadius: "10px",
+    borderRadius: "10px", // Assuming token.borderRadiusLG is a string like "10px"
   };
 
   return (

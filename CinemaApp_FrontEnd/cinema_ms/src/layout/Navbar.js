@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { logout } from "../../src/redux/userSlice";
 import "./Navbar.css";
 
 export default function () {
@@ -17,7 +16,7 @@ export default function () {
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-black ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/home">
+          <a class="navbar-brand" href="#">
             CinemaMS
           </a>
           <button
@@ -63,13 +62,6 @@ export default function () {
                   >
                     Edit User
                   </button>
-                  <button
-                    class="btn btn-outline-danger button1"
-                    type="submit"
-                    onClick={(e) => logout()}
-                  >
-                    Log out
-                  </button>
                 </>
               ) : (
                 <>
@@ -96,4 +88,4 @@ export default function () {
       </nav>
     </div>
   );
-};
+}

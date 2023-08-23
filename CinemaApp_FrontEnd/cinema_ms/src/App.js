@@ -9,9 +9,7 @@ import Login from './pages/login/Login';
 import Register from'./pages/register/Register'
 import Seat from './pages/seat/Seat';
 import EditUser from './pages/register/EditUser';
-import AddSeatCategory from './pages/seat/AddSeatCategory/AddSeatCategory';
 import { useSelector } from "react-redux";
-
 
 function App() {
 
@@ -23,15 +21,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/movies" element={currentUser ? <Movies /> : <Login />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/seat" element={currentUser ? <Seat /> : <Login />} />
-        <Route path="/edituser" element={currentUser ? <EditUser /> : <Login />} />
-        <Route path="/addMovie" element={currentUser ? <AddMoviePage/> : <Login />}/>
-        <Route path="/addSeat" element={currentUser ? <AddSeatCategory /> : <Login />} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/seat" element={<Seat/>} />
+        <Route path="/edituser" element={<EditUser/>} />
+        <Route path="/addMovie" element={<AddMoviePage/>} />
       </Routes>
     </Router>
+
   );
 }
 
