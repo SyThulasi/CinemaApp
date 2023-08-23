@@ -15,6 +15,6 @@ public interface CinemaUserRepository extends JpaRepository<CinemaUser,Integer> 
 
     Optional<CinemaUser> findOneByUserNameAndPassword(String userName, String encodedPassword);
 
-    CinemaUser findById(int cinemaId);
+    Optional <CinemaUser> findById(int cinemaId);
 
 }

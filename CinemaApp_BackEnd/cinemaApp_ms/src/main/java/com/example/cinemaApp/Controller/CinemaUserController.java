@@ -14,8 +14,8 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("api/v1/cinemaUser")
-@CrossOrigin
+@RequestMapping("api/v1/cinemaUser/user")
+@CrossOrigin( origins = "http://localhost:3000/", allowedHeaders = {})
 public class CinemaUserController {
 
     @Autowired

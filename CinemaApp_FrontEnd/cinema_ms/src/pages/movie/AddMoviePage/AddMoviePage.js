@@ -23,12 +23,14 @@ import {
 
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "../../register/api/axios";
 import "./AddMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import ShowCustomCalendar from "./ShowCustomCalender";
 import ShowTimes from "./ShowTimes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { MovieActions } from "/home//thulasiyan/Documents/CinemaApp/CinemaApp_FrontEnd/cinema_ms/src/Actions/MovieActions";
+import axios from "../../register/api/axios";
+
 const REGISTER_URL = "/Movies/save";
 
 const languageList = [
@@ -67,6 +69,8 @@ const languageList = [
 const format = "HH:mm";
 
 const AddMoviePage = () => {
+
+  const dispatch = useDispatch();
 
   const userRef = useRef();
   const errRef = useRef();
@@ -135,6 +139,24 @@ const AddMoviePage = () => {
     } catch (err) {console.log(err);}
   };
 
+      // const handleSubmit = (values) => {
+
+
+      //   const data = {
+      //     cinema_id: currentUser.cinema_id,
+      //             duration_minutes: duration,
+      //             release_date: releaseDate,
+      //             description: description,
+      //             imgurl: "../../public/Images/jailer.jpg",
+      //             language: language,
+      //             movie_name: movieName,
+      //             show_dates: showArray,
+      //             show_times: showTimeArray,
+      //   };
+      //   console.log(data);
+      //   dispatch(MovieActions.addMovie(data));
+      //   dispatch(MovieActions.getMovies(currentUser.cinema_id));
+      // };
 
   //--------------------------------------------------------------------------------------------
   

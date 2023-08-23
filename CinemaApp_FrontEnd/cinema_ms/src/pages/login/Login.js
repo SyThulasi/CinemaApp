@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import axios from './api/axios';
-const LOGIN_URL = '/login';
+const LOGIN_URL = '/user/login';
 
 
 const Login = () => {

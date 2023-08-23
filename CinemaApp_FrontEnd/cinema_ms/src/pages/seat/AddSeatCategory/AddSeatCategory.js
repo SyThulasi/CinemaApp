@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { SeatActions } from "../../../Actions/SeatActions";
 import axios from "../../register/api/axios";
 const URL = "/Seats/save";
 
@@ -27,22 +28,38 @@ const AddSeatCategory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-        e.preventDefault();
+//---------------------------------------------------------------------------------------  
 
-        try {
-            const response = await axios.post(URL, {
-              cinema_id: currentUser.cinema_id,
-              type: category,
-              count : seatCount,
-              price: ticketPrice,
-            });
-            navigate("/seat")
-        } 
-        catch (err) {
+// const handleSubmit = async (e) => {
+//         e.preventDefault();
 
-        }
-    }
+//         try {
+//             const response = await axios.post(URL, {
+//               cinema_id: currentUser.cinema_id,
+//               type: category,
+//               count : seatCount,
+//               price: ticketPrice,
+//             });
+//             navigate("/seat")
+//         } 
+//         catch (err) {
+
+//         }
+// }
+  
+  const handleSubmit = (values) => {
+
+      var paramData = {
+                      cinema_id: currentUser.cinema_id,
+                      type: category,
+                      count : seatCount,
+                      price: ticketPrice,
+      };
+    
+      dispatch(SeatActions.addSeat(paramData));
+    
+  };
+//------------------------------------------------------------------------------------------
   return (
     <section className="custom-section1 center">
       <section className="custom-container">
