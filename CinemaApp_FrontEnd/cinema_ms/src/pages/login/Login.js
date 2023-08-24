@@ -4,6 +4,7 @@ import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
 import AuthContext from "./context/AuthProvider";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DataHandler from "../../Handler/DataHandler";
 import "./Login.css"
 import axios from './api/axios';
 const LOGIN_URL = '/user/login';
@@ -44,6 +45,8 @@ const Login = () => {
             const response = await axios.post(LOGIN_URL,
                 { userName : user, password : pwd }
             );
+            DataHandler.setToSession("username", user);
+            DataHandler.setToSession("password", pwd);
             dispatch(loginSuccess(response.data));
             if (currentUser) {
                 navigate('/home')

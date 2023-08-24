@@ -26,12 +26,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./AddMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import ShowCustomCalendar from "./ShowCustomCalender";
-import ShowTimes from "./ShowTimes";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieActions } from "/home//thulasiyan/Documents/CinemaApp/CinemaApp_FrontEnd/cinema_ms/src/Actions/MovieActions";
 import axios from "../../register/api/axios";
+import DataHandler from "../../../Handler/DataHandler";
 
-const REGISTER_URL = "/Movies/save";
+const URL = "/Movies/save";
 
 const languageList = [
   "English",
@@ -66,9 +66,16 @@ const languageList = [
   "Tagalog",
 ];
 
-const format = "HH:mm";
+
 
 const AddMoviePage = () => {
+
+  const { currentUser } = useSelector((state) => state.user);
+  const jsonString = JSON.stringify(currentUser);
+  const userId = jsonString.split(",")
+  const id = userId[0].split(":")
+  console.log(id[1])
+
 
   const dispatch = useDispatch();
 
@@ -81,26 +88,26 @@ const AddMoviePage = () => {
 
   const [description, setDescription] = useState("");
 
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState(languageList[0]);
 
   const [duration, setDuration] = useState("");
 
   const [releaseDate, setReleaseDate] = useState("");
 
+  const [showTimes, setShowTimes] = useState("");
+
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
   //-------------------------------------------------------------------------------------------
 
-  const { currentUser } = useSelector((state) => state.user);
+  
 
   //----------------------------Date and Time Functions----------------------------------------
 
   const [showArray, setShowArray] = useState([]);
-  const [showTimeArray, setShowTimeArray] = useState([]);
 
   const handleShowDaysChange = (newElement) => {
     const newArray = [...showArray, newElement];
@@ -108,55 +115,40 @@ const AddMoviePage = () => {
     console.log(showArray);
   };
 
-  const handleShowTimes = (newElement) => {
-    const newArray = [...showTimeArray, newElement];
-    setShowTimeArray(newArray);
-  };
 
   // -----------------------------Handle Submit--------------------------------------------------
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Clicked")
+
     try {
-      console.log("Clicked1");
       const response = await axios.post(
-        `http://localhost:8090/api/v1/cinemaUser/Movie/save`,
+        URL,
         {
-          cinema_id: currentUser.cinema_id,
-          duration_minutes: duration,
-          release_date: releaseDate,
+          cinemaId: id[1],
+          durationMinutes: duration,
+          releaseDate: releaseDate,
           description: description,
-          imgurl: "../../public/Images/jailer.jpg",
+          imgURL: "../../public/Images/jailer.jpg",
           language: language,
-          movie_name: movieName,
-          show_dates: showArray,
-          show_times: showTimeArray,
+          movieName: movieName,
+          showDates: showArray,
+          showTimes: showTimes.split(","),
+        },
+        {
+          auth: {
+            username: DataHandler.getFromSession("username"),
+
+            password: DataHandler.getFromSession("password"),
+          },
         }
       );
-      console.log("Clicked2");
       navigate("/movies");
-    } catch (err) {console.log(err);}
+      console.log("Movie Successfully added.....");
+    } catch (err) {
+      console.log(err)
+    }
   };
-
-      // const handleSubmit = (values) => {
-
-
-      //   const data = {
-      //     cinema_id: currentUser.cinema_id,
-      //             duration_minutes: duration,
-      //             release_date: releaseDate,
-      //             description: description,
-      //             imgurl: "../../public/Images/jailer.jpg",
-      //             language: language,
-      //             movie_name: movieName,
-      //             show_dates: showArray,
-      //             show_times: showTimeArray,
-      //   };
-      //   console.log(data);
-      //   dispatch(MovieActions.addMovie(data));
-      //   dispatch(MovieActions.getMovies(currentUser.cinema_id));
-      // };
 
   //--------------------------------------------------------------------------------------------
   
@@ -177,7 +169,6 @@ const AddMoviePage = () => {
             type="text"
             id="movieName"
             ref={userRef}
-            autoComplete="off"
             onChange={(e) => setMovieName(e.target.value)}
             value={movieName}
             required
@@ -187,7 +178,6 @@ const AddMoviePage = () => {
           <input
             type="text"
             id="description"
-            autoComplete="off"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             required
@@ -242,38 +232,17 @@ const AddMoviePage = () => {
               label="Show Days"
               onDateChange={handleShowDaysChange}
             />
-
-            {/* <Alert message={date.toString()} type="success" /> */}
           </Form.Item>
 
-          <label htmlFor="phoneNo">Add Show Times:</label>
-
-          <Form.Item name="showDay">
-            <ShowTimes label="Show times" onDateChange={handleShowTimes} />
-            {showTimeArray.map((country) => (
-              <Alert message={JSON.stringify(country)} type="success" />
-            ))}
-          </Form.Item>
-
-          {/* <label htmlFor="username">
-                            Username:
-                            <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                            aria-invalid={validName ? "false" : "true"}
-                            aria-describedby="uidnote"
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
-                        /> */}
-
+          <label htmlFor="showDay">Add Show Times:</label>
+          <input
+            type="show times"
+            id="show times"
+            placeholder="09.30,13.30,16.30,19.30"
+            onChange={(e) => setShowTimes(e.target.value)}
+            value={showTimes}
+            required
+          />
           <button>Add</button>
         </form>
       </section>

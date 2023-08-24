@@ -6,6 +6,8 @@ import com.example.cinemaApp.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("api/v1/cinemaUser/Movies")
@@ -21,8 +23,8 @@ public class MovieController {
     }
 
     @PostMapping(path = "/save")
-    public String saveMovie(@RequestBody MovieDTO movieDTO){
-
+    public Movie saveMovie(@RequestBody MovieDTO movieDTO){
+            System.out.println(movieDTO);
             Movie temp = new Movie();
 
         try{
@@ -31,6 +33,13 @@ public class MovieController {
             System.out.println("-----------------------------------------------------------------------");
             System.out.println(e);
         }
-        return String.valueOf(temp);
+//        return String.valueOf(temp);
+        return null;
     }
+
+    @GetMapping("/movie")
+    public List<Movie> getMovies(){
+        return movieService.getMovies();
+    }
+
 }

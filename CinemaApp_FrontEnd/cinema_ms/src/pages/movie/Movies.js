@@ -14,7 +14,7 @@ export default function Movies() {
   return (
     <section className="custom-section3">
       <div className="image-overlay1">
-        <h2 className="movie" >Movies</h2>{" "}
+        <h2 className="movie">Movies</h2>{" "}
         <button
           class="btn btn-outline-danger "
           type="submit"
@@ -25,13 +25,49 @@ export default function Movies() {
       </div>
       <div className="col-10 position-relative movie-album-container">
         <div className="movie-album">
-          <MovieAlbum />
+          <MovieAlbum
+            movieName="Jailer"
+            language="Tamil"
+            duration="169 Mins"
+            country="Indian"
+            imageSrc="./Images/jailer.jpg"
+          />
         </div>
         <div className="movie-album">
-          <MovieAlbum />
+          <MovieAlbum
+            movieName="Jailer"
+            language="Tamil"
+            duration="169 Mins"
+            country="Indian"
+            imageSrc="./Images/jailer.jpg"
+          />
         </div>
         <div className="movie-album">
-          <MovieAlbum />
+          <MovieAlbum
+            movieName="Jailer"
+            language="Tamil"
+            duration="169 Mins"
+            country="Indian"
+            imageSrc="./Images/jailer.jpg"
+          />
+        </div>
+        <div className="movie-album">
+          <MovieAlbum
+            movieName="Jailer"
+            language="Tamil"
+            duration="169 Mins"
+            country="Indian"
+            imageSrc="./Images/jailer.jpg"
+          />
+        </div>
+        <div className="movie-album">
+          <MovieAlbum
+            movieName="Jailer"
+            language="Tamil"
+            duration="169 Mins"
+            country="Indian"
+            imageSrc="./Images/jailer.jpg"
+          />
         </div>
       </div>
     </section>

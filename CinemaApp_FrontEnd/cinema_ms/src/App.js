@@ -11,6 +11,7 @@ import Seat from './pages/seat/Seat';
 import EditUser from './pages/register/EditUser';
 import AddSeatCategory from './pages/seat/AddSeatCategory/AddSeatCategory';
 import { useSelector } from "react-redux";
+import EditSeatCategory from './pages/seat/AddSeatCategory/EditSeat';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/edituser" element={currentUser ? <EditUser /> : <Login />} />
         <Route path="/addMovie" element={currentUser ? <AddMoviePage/> : <Login />}/>
         <Route path="/addSeat" element={currentUser ? <AddSeatCategory /> : <Login />} />
+        <Route path="/editSeat" element={currentUser ? <EditSeatCategory /> : <Login />} />
       </Routes>
     </Router>
   );

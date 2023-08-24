@@ -2,6 +2,34 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./seat.css"
 
+const seatData = [
+  {
+    cinema_id: 1,
+    type: "Superier",
+    count: 25,
+    price: "1500",
+  },
+  {
+    cinema_id: 1,
+    type: "Balcony",
+    count: 50,
+    price: "1000",
+  },
+  {
+    cinema_id: 1,
+    type: "Normal",
+    count: 200,
+    price: "800",
+  },
+  {
+    cinema_id: 1,
+    type: "Lower",
+    count: 100,
+    price: "500",
+  },
+];
+
+
 export default function Seat() {
   const navigate = useNavigate();
 
@@ -34,51 +62,23 @@ export default function Seat() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Balcony</td>
-                <td>1000.00</td>
-                <td>50</td>
-                <td>
-                  <button
-                    class="button2"
-                    type="submit"
-                    onClick={(e) => handleClick("/addMovie")}
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Middle</td>
-                <td>700.00</td>
-                <td>150</td>
-                <td>
-                  <button
-                    class="button2"
-                    type="submit"
-                    onClick={(e) => handleClick("/addMovie")}
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Lower</td>
-                <td>500.00</td>
-                <td>100</td>
-                <td>
-                  <button
-                    class="button2"
-                    type="submit"
-                    onClick={(e) => handleClick("/addMovie")}
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
+              {seatData.map((seat, index) => (
+                <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{seat.type}</td>
+                  <td>{seat.price}</td>
+                  <td>{seat.count}</td>
+                  <td>
+                    <button
+                      className="button2"
+                      type="button"
+                      onClick={(e) => handleClick("/editSeat")}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

@@ -8,28 +8,22 @@ import { useSelector } from "react-redux";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const PHONENO_REGEX= /^\+[1-9]{1}[0-9]{3,14}$/;
 
 const REGISTER_URL = '/save';
 
 const EditUser = () => {
 
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser.cinemaID)
 
     const userRef = useRef();
     const errRef = useRef();
 
-    // const {id} =  useParam()   
-
-
     const [cinemaName, setCinemaName] = useState(currentUser.cinemaName);
-    const [cinemaNameFocus, setCinemaNameFocus] = useState(false);
 
     const [city, setCity] = useState(currentUser.city);
-    const [cityFocus, setCityFocus] = useState(false);
 
     const [phoneNo, setphoneNo] = useState(currentUser.phoneNo);
-    const [phoneNoFocus, setphoneNoFocus] = useState(false);
 
     const [user, setUser] = useState(currentUser.userName);
     const [validName, setValidName] = useState(false);
@@ -109,14 +103,6 @@ const EditUser = () => {
         }
     }
 
-    // const loadUser = async ()=>{
-    //     const result = await axios.get(`/save/${id}`)
-    //     setCinemaName(result.data.cinemaName)
-    //     setCity(result.data.city)
-    //     setphoneNo(result.data.phoneNo)
-    //     setUser(result.data.user)
-    // }
-
     return (
         <section className="custom-section2 center">
             
@@ -157,8 +143,6 @@ const EditUser = () => {
                             onChange={(e) => setphoneNo(e.target.value)}
                             value={phoneNo}
                             required
-                            onFocus={() => setphoneNoFocus(true)}
-                            onBlur={() => setphoneNoFocus(false)}
                         />
                         <label htmlFor="username">
                             Username:
@@ -183,8 +167,9 @@ const EditUser = () => {
                             4 to 24 characters.<br />
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
-                        </p>
-                        <label htmlFor="password">
+                    </p>
+                    
+                        {/* <label htmlFor="password">
                             Old Password:
                         </label>
                         <input
@@ -235,7 +220,7 @@ const EditUser = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
-                        </p>
+                        </p> */}
 
                         <button >Update Your Profile</button>
                     </form>

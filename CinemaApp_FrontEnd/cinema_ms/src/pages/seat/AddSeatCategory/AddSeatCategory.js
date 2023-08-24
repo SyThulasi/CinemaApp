@@ -30,35 +30,46 @@ const AddSeatCategory = () => {
 
 //---------------------------------------------------------------------------------------  
 
-// const handleSubmit = async (e) => {
-//         e.preventDefault();
+  const handleSubmit = async (e) => {
+          e.preventDefault();
 
-//         try {
-//             const response = await axios.post(URL, {
-//               cinema_id: currentUser.cinema_id,
-//               type: category,
-//               count : seatCount,
-//               price: ticketPrice,
-//             });
-//             navigate("/seat")
-//         } 
-//         catch (err) {
+    try {
+            
+              const response = await axios.post(
+                URL,
+                {
+                  cinema_id: 1,
+                  type: category,
+                  count: seatCount,
+                  price: ticketPrice,
+                },
+                {
+                  auth: {
+                    username: "regal",
 
-//         }
-// }
+                    password: "Regal@123",
+                  },
+                }
+              );
+              navigate("/seat")
+          } 
+          catch (err) {
+
+          }
+  }
   
-  const handleSubmit = (values) => {
+  // const handleSubmit = (values) => {
 
-      var paramData = {
-                      cinema_id: currentUser.cinema_id,
-                      type: category,
-                      count : seatCount,
-                      price: ticketPrice,
-      };
+  //     var paramData = {
+  //                     cinema_id: currentUser.cinema_id,
+  //                     type: category,
+  //                     count : seatCount,
+  //                     price: ticketPrice,
+  //     };
     
-      dispatch(SeatActions.addSeat(paramData));
+  //     dispatch(SeatActions.addSeat(paramData));
     
-  };
+  // };
 //------------------------------------------------------------------------------------------
   return (
     <section className="custom-section1 center">
@@ -77,7 +88,6 @@ const AddSeatCategory = () => {
             type="text"
             id="category"
             ref={userRef}
-            autoComplete="off"
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             required
@@ -86,7 +96,6 @@ const AddSeatCategory = () => {
           <input
             type="text"
             id="count"
-            autoComplete="off"
             onChange={(e) => setSeatCount(e.target.value)}
             value={seatCount}
             required
@@ -95,7 +104,6 @@ const AddSeatCategory = () => {
           <input
             type="text"
             id="price"
-            autoComplete="off"
             onChange={(e) => setTicketPrice(e.target.value)}
             value={ticketPrice}
             required

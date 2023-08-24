@@ -3,6 +3,7 @@ package com.example.cinemaApp.Service.impl;
 import com.example.cinemaApp.DTO.CinemaUserDTO;
 import com.example.cinemaApp.DTO.LoginDTO;
 import com.example.cinemaApp.Entity.CinemaUser;
+import com.example.cinemaApp.Mapper.CinemaUserMapper;
 import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Service.CinemaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CinemaUserMapper cinemaUserMapper;
 
     @Override
     public String register(CinemaUserDTO cinemaUserDTO) {
@@ -67,6 +71,14 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
         return null;
     }
 
+    @Override
+    public CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO, int id) {
+        CinemaUser cinemaUserEntity =new CinemaUser();
+        cinemaUserEntity = cinemaUserMapper.mapIn(cinemaUserDTO);
+        cinemaUserEntity.setCinemaId(id);
+        cinemaUserRepository.save(cinemaUserEntity);
+        return cinemaUserEntity;
+    }
 
 
 }

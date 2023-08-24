@@ -7,18 +7,13 @@ import jakarta.persistence.*;
 public class CinemaUser {
 
     @Id
-    @Column(name = "cinema_id", length = 45)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cinemaId;
-    @Column(name = "cinema_name", length = 255)
     private String cinemaName;
-    @Column(name = "city", length = 255)
     private String city;
-    @Column(name = "phone_number", length = 255)
     private String phoneNo;
-    @Column(name = "cinema_username", length = 255)
     private String userName;
-    @Column(name = "password", length = 255)
+
     private String password;
 
     public CinemaUser(int cinemaId, String cinemaName, String city, String phoneNo, String userName, String password) {

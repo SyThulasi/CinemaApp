@@ -16,4 +16,5 @@ public interface CinemaUserService {
     Optional<CinemaUser> loginEmployee(LoginDTO loginDTO);
 
 
+    CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO, int id);
 }

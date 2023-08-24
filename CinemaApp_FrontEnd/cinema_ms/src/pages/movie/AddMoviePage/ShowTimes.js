@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { TimePicker, Button } from "antd";
 
 function ShowTimes(props) {
-  const [oneshow, setOneshow] = useState(""); // Initialize with an empty string
+  
+  const [oneshow, setOneshow] = useState("");
   const [showArray, setShowArray] = useState([]);
 
   const handleShowtime = (time, timeString) => {
@@ -11,15 +12,11 @@ function ShowTimes(props) {
     setOneshow(timeString);
   };
 
-  const addShow = () => {
-    const newArray = [...showArray, oneshow];
-    setShowArray(newArray);
-    console.log(showArray);
-  };
-
-  const addShowDate = () => {
-    // Do something with the selected time(s) and date here
-  };
+const addShow = () => {
+  const newArray = [...showArray, oneshow];
+  setShowArray(newArray);
+  console.log(newArray);
+};
 
   const wrapperStyle = {
     width: 300,

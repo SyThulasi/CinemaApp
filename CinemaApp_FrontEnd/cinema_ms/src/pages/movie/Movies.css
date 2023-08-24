@@ -11,13 +11,12 @@
       padding-top: 20px;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 20px; /* Adjust the value as needed */
+      justify-content: flex-start;
+      gap: 20px;
     }
     
     .movie-album {
-      flex: 1 0 calc(33.33% - 20px); /* Adjust for equal-width columns with spacing */
+      flex: 1 0 calc(33.33% - 20px); 
     }
     
   
@@ -28,6 +27,7 @@
       color: white;
       text-align: center;
     }
+
     
 
 

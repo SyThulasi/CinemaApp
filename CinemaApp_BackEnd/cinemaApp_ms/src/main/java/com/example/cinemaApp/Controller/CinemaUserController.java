@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/cinemaUser/user")
-@CrossOrigin( origins = "http://localhost:3000/", allowedHeaders = {})
+@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = {"Access-Control-Allow-Origin"})
 public class CinemaUserController {
 
     @Autowired
@@ -35,6 +35,10 @@ public class CinemaUserController {
         return ResponseEntity.ok(cinemaUser);
     }
 
+    @PutMapping("/save/{id}")
+    public CinemaUser updateProfile(@RequestParam("id") int id, CinemaUserDTO cinemaUserDTO){
+        return cinemaUserService.updateProfile(cinemaUserDTO,id);
+    }
 
 
 }

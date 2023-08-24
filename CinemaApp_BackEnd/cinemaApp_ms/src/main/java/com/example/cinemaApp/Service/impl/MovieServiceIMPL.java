@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Component
 @Scope
@@ -19,7 +19,7 @@ public class MovieServiceIMPL implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
     @Override
-    public String saveMovie(MovieDTO movieDTO) {
+    public Movie saveMovie(MovieDTO movieDTO) {
         Movie movie = new Movie(
                 movieDTO.getMovieID(),
                 movieDTO.getMovieName(),
@@ -33,6 +33,11 @@ public class MovieServiceIMPL implements MovieService {
                 movieDTO.getCinemaUser()
         );
         movieRepository.save(movie);
-        return movie.getMovieName();
+        return movie;
+    }
+
+    @Override
+    public List<Movie> getMovies() {
+        return movieRepository.findAll();
     }
 }

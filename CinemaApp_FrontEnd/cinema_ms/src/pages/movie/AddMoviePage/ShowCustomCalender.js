@@ -45,7 +45,7 @@ function ShowCustomCalendar(props) {
   //   };
 
   const onPanelChange = (value, mode) => {
-    console.log(value.format("YYYY-MM-DD"), mode);
+    console.log(value.format("YYYY-MM-DD"));
     setDate(value.format("YYYY-MM-DD"));
   };
   const addShowDate = () => {
