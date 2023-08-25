@@ -1,0 +1,16 @@
+    @Autowired
+    private MovieMapper movieMapper;
+
+    @Override
+        Movie movie = new Movie();
+
+        System.out.println(movieDTO);
+        movie = movieMapper.mapIn(movieDTO);
+        System.out.println(movie);
+        System.out.println("============================================================================================================");
+
+
+        movieRepository.save(movie);
+
+        return movie;
+    }

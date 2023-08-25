@@ -8,6 +8,7 @@ import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Service.CinemaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -47,24 +48,16 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
     CinemaUserDTO cinemaUserDTO;
 
     @Override
-    public Optional<CinemaUser> loginEmployee(LoginDTO loginDTO) {
+    public CinemaUser loginEmployee(@CurrentSecurityContext(expression="authentication?.name")LoginDTO loginDTO) {
         String msg = "";
         CinemaUser cinemaUser1 = cinemaUserRepository.findByUserName(loginDTO.getUserName());
         if (cinemaUser1 != null) {
             String password = loginDTO.getPassword();
             String encodedPassword = cinemaUser1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            if (isPwdRight) {
-                Optional<CinemaUser> cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
-                if (cinemaUser.isPresent()) {
-//                    return new LoginResponse("Login Success", true);
-                    return cinemaUser;
-                } else {
-//                    return new LoginResponse("Login Failed", false);
-                }
-            } else {
-//                return new LoginResponse("password Not Match", false);
-            }
+            CinemaUser cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
+
+            return cinemaUser;
         }else {
 //            return new LoginResponse("User not exits", false);
         }
@@ -72,10 +65,10 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
     }
 
     @Override
-    public CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO, int id) {
+    public CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO) {
         CinemaUser cinemaUserEntity =new CinemaUser();
         cinemaUserEntity = cinemaUserMapper.mapIn(cinemaUserDTO);
-        cinemaUserEntity.setCinemaId(id);
+        cinemaUserEntity.setCinemaId(cinemaUserDTO.getCinemaId());
         cinemaUserRepository.save(cinemaUserEntity);
         return cinemaUserEntity;
     }

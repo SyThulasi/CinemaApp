@@ -71,11 +71,9 @@ const languageList = [
 const AddMoviePage = () => {
 
   const { currentUser } = useSelector((state) => state.user);
-  const jsonString = JSON.stringify(currentUser);
-  const userId = jsonString.split(",")
-  const id = userId[0].split(":")
-  console.log(id[1])
-
+  // const jsonString = JSON.stringify(currentUser);
+  // const userId = jsonString.split(",")
+  // const id = userId[0].split(":")
 
   const dispatch = useDispatch();
 
@@ -125,7 +123,7 @@ const AddMoviePage = () => {
       const response = await axios.post(
         URL,
         {
-          cinemaId: id[1],
+          cinemaId: currentUser.cinemaId,
           durationMinutes: duration,
           releaseDate: releaseDate,
           description: description,

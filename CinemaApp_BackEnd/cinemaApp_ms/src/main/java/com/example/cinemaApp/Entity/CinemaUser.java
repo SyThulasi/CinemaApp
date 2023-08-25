@@ -1,6 +1,10 @@
 package com.example.cinemaApp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "CinemaUser")
@@ -13,8 +17,24 @@ public class CinemaUser {
     private String city;
     private String phoneNo;
     private String userName;
-
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cinemaUser", cascade = CascadeType.ALL)
+    private List<Movie> movies = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cinemaUser", cascade = CascadeType.ALL)
+    private List<Seats> seatCategory = new ArrayList<>();
+
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     public CinemaUser(int cinemaId, String cinemaName, String city, String phoneNo, String userName, String password) {
         this.cinemaId = cinemaId;

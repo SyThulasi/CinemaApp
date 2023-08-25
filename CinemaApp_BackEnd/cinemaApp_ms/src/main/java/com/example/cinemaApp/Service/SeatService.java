@@ -1,6 +1,8 @@
 package com.example.cinemaApp.Service;
 
 import com.example.cinemaApp.DTO.SeatsDTO;
+import com.example.cinemaApp.DTO.UpdateSeatDTO;
+import com.example.cinemaApp.Entity.Seats;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -9,5 +11,7 @@ import org.springframework.stereotype.Service;
 @Scope
 public interface SeatService {
 
-    int saveSeat(SeatsDTO seatsDTO);
+    Seats saveSeat(SeatsDTO seatsDTO);
+
+    Seats updateSeat(UpdateSeatDTO updateSeatDTO);
 }

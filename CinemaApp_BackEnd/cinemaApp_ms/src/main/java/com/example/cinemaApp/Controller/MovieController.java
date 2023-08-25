@@ -24,21 +24,14 @@ public class MovieController {
 
     @PostMapping(path = "/save")
     public Movie saveMovie(@RequestBody MovieDTO movieDTO){
-            System.out.println(movieDTO);
-            Movie temp = new Movie();
-
-        try{
-            return movieService.saveMovie(movieDTO);
-        } catch (Exception e){
-            System.out.println("-----------------------------------------------------------------------");
-            System.out.println(e);
-        }
-//        return String.valueOf(temp);
+//            System.out.println(movieDTO);
+        movieService.saveMovie(movieDTO);
         return null;
     }
 
-    @GetMapping("/movie")
+    @GetMapping("/save")
     public List<Movie> getMovies(){
+
         return movieService.getMovies();
     }
 

@@ -16,9 +16,9 @@ public class MovieDTO {
     private String imgURL;
     private List<String> showDates;
     private List<String> showTimes;
-    private CinemaUser cinemaUser;
+    private int cinemaId;
 
-    public MovieDTO(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, List<String> showDates, List<String> showTimes, CinemaUser cinemaUser) {
+    public MovieDTO(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, List<String> showDates, List<String> showTimes, int cinemaId) {
         this.movieID = movieID;
         this.movieName = movieName;
         this.description = description;
@@ -28,7 +28,15 @@ public class MovieDTO {
         this.imgURL = imgURL;
         this.showDates = showDates;
         this.showTimes = showTimes;
-        this.cinemaUser = cinemaUser;
+        this.cinemaId = cinemaId;
+    }
+
+    public int getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(int cinemaId) {
+        this.cinemaId = cinemaId;
     }
 
     public MovieDTO() {
@@ -106,13 +114,7 @@ public class MovieDTO {
         this.showTimes = showTimes;
     }
 
-    public CinemaUser getCinemaUser() {
-        return cinemaUser;
-    }
 
-    public void setCinemaUser(CinemaUser cinemaUser) {
-        this.cinemaUser = cinemaUser;
-    }
 
     @Override
     public String toString() {
@@ -126,7 +128,7 @@ public class MovieDTO {
                 ", imgURL='" + imgURL + '\'' +
                 ", showDates=" + showDates +
                 ", showTimes=" + showTimes +
-                ", cinemaUser=" + cinemaUser +
+                ", cinemaId=" + cinemaId +
                 '}';
     }
 }

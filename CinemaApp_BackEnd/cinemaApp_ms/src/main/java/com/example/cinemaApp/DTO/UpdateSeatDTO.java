@@ -1,28 +1,24 @@
 package com.example.cinemaApp.DTO;
 
-import com.example.cinemaApp.Entity.CinemaUser;
-
-public class SeatsDTO {
+public class UpdateSeatDTO {
 
     private Long id;
     private String type;
     private int count;
     private double price;
-    private int cinemaId;
 
-    public SeatsDTO(Long id, String type, int count, double price, int cinemaId) {
+    public UpdateSeatDTO(Long id, String type, int count, double price) {
         this.id = id;
         this.type = type;
         this.count = count;
         this.price = price;
-        this.cinemaId = cinemaId;
     }
 
-    public SeatsDTO() {
+    public UpdateSeatDTO() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getId() {
+        return Math.toIntExact(id);
     }
 
     public void setId(Long id) {
@@ -51,13 +47,5 @@ public class SeatsDTO {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
     }
 }

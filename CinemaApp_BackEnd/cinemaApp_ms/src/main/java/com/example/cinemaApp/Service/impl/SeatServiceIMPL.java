@@ -1,7 +1,9 @@
 package com.example.cinemaApp.Service.impl;
 
 import com.example.cinemaApp.DTO.SeatsDTO;
+import com.example.cinemaApp.DTO.UpdateSeatDTO;
 import com.example.cinemaApp.Entity.Seats;
+import com.example.cinemaApp.Mapper.SeatsMapper;
 import com.example.cinemaApp.Repository.SeatsRepository;
 import com.example.cinemaApp.Service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
 @Component
 @Scope
@@ -18,17 +21,31 @@ public class SeatServiceIMPL implements SeatService {
     @Autowired
     private SeatsRepository seatsRepository;
 
-    @Override
-    public int saveSeat(SeatsDTO seatsDTO) {
+    @Autowired
+    private SeatsMapper seatsMapper;
 
-        Seats seats = new Seats(
-                seatsDTO.getId(),
-                seatsDTO.getType(),
-                seatsDTO.getCount(),
-                seatsDTO.getPrice(),
-                seatsDTO.getCinemaUser()
-        );
+    @Override
+    public Seats saveSeat(SeatsDTO seatsDTO) {
+
+        Seats seats = new Seats();
+
+        seats = seatsMapper.mapIn(seatsDTO);
         seatsRepository.save(seats);
-        return Math.toIntExact(seats.getId());
+        return seats;
+    }
+
+    @Override
+    public Seats updateSeat(UpdateSeatDTO updateSeatDTO) {
+        Optional seat=seatsRepository.findById(updateSeatDTO.getId());
+
+        if(seat.isPresent()){
+            Seats seatEntity=(Seats) seat.get();
+            seatEntity.setPrice(updateSeatDTO.getPrice());
+            seatEntity.setCount(updateSeatDTO.getCount());
+            seatEntity.setType(updateSeatDTO.getType());
+            seatsRepository.save(seatEntity);
+            return seatEntity;
+        }
+        return null;
     }
 }

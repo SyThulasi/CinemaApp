@@ -1,6 +1,8 @@
 package com.example.cinemaApp.Controller;
 
 
+import com.example.cinemaApp.DTO.UpdateSeatDTO;
+import com.example.cinemaApp.Entity.Seats;
 import com.example.cinemaApp.Service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +22,15 @@ public class SeatsController {
     }
 
     @PostMapping(path = "/save")
-    public  int saveSeatType(@RequestBody SeatsDTO seatsDTO){
+    public Seats saveSeatType(@RequestBody SeatsDTO seatsDTO){
 
-        int id = seatService.saveSeat(seatsDTO);
-        return id;
+        seatService.saveSeat(seatsDTO);
+        return null;
+    }
+
+    @PutMapping("/save")
+    public Seats updateSeat(@RequestBody UpdateSeatDTO updateSeatDTO) {
+        return seatService.updateSeat(updateSeatDTO);
     }
 
 }

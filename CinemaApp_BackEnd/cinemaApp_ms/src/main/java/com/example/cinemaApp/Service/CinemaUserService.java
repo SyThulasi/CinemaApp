@@ -6,15 +6,14 @@ import com.example.cinemaApp.DTO.LoginDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @Scope
 public interface CinemaUserService {
     public String register(CinemaUserDTO cinemaUserDTO);
 
-    Optional<CinemaUser> loginEmployee(LoginDTO loginDTO);
+    CinemaUser loginEmployee(LoginDTO loginDTO);
 
 
-    CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO, int id);
+//    CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO, int id);
+CinemaUser updateProfile(CinemaUserDTO cinemaUserDTO);
 }
