@@ -13,5 +13,4 @@ public interface MovieService {
 
     Movie saveMovie(MovieDTO movieDTO);
 
-    List<Movie> getMovies();
 }

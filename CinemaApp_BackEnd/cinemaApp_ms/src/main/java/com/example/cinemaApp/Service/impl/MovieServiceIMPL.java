@@ -36,10 +36,5 @@ public class MovieServiceIMPL implements MovieService {
         return movie;
     }
 
-    @Override
-    public List<Movie> getMovies() {
-
-        return movieRepository.findAll();
-    }
 }
 

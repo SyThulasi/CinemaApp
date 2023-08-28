@@ -29,10 +29,5 @@ public class MovieController {
         return null;
     }
 
-    @GetMapping("/save")
-    public List<Movie> getMovies(){
-
-        return movieService.getMovies();
-    }
 
 }
