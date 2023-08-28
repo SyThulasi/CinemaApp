@@ -43,7 +43,8 @@ public class SpringSecurityConfig {
                 .requestMatchers("api/v1/cinemaUser/user/**").permitAll()
                 .requestMatchers(
                         "api/v1/cinemaUser/Movies/**",
-                        "api/v1/cinemaUser/Seats/**"
+                        "api/v1/cinemaUser/Seats/**",
+                        "/kafka/**"
                 ).hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
