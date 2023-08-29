@@ -20,7 +20,7 @@ public class JsonKafkaConsumer {
 
 
 
-    @KafkaListener(topics = "My_Topic_Json", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "movie_json", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(CinemaUserDTO user) {
 
         LOGGER.info(String.format("Json Message received -> %s", user.toString()));

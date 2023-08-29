@@ -1,6 +1,7 @@
 package com.example.cinemaApp.Controller;
 
 import com.example.cinemaApp.DTO.MovieDTO;
+import com.example.cinemaApp.DTO.MoviePublishDTO;
 import com.example.cinemaApp.Entity.Movie;
 import com.example.cinemaApp.Service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MovieController {
     }
 
     @PostMapping(path = "/save")
-    public Movie saveMovie(@RequestBody MovieDTO movieDTO){
+    public MoviePublishDTO saveMovie(@RequestBody MovieDTO movieDTO){
 //            System.out.println(movieDTO);
 
         return movieService.saveMovie(movieDTO);

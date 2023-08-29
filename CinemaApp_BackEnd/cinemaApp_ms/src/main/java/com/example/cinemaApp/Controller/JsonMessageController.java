@@ -1,6 +1,7 @@
 package com.example.cinemaApp.Controller;
 
 import com.example.cinemaApp.DTO.CinemaUserDTO;
+import com.example.cinemaApp.DTO.MoviePublishDTO;
 import com.example.cinemaApp.Kafka.JsonKafkaProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class JsonMessageController {
     }
 
     @PostMapping("/publish")
-    public ResponseEntity<String> publish(@RequestBody CinemaUserDTO user){
+    public ResponseEntity<String> publish(@RequestBody MoviePublishDTO user){
         jsonKafkaProducer.sendMessage(user);
         return ResponseEntity.ok("Message sent to Kafka topic");
     }
