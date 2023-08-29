@@ -1,11 +1,13 @@
 package com.example.cinemaApp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
+@Table(name = "Show")
 public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,22 +21,20 @@ public class Show {
 
     private String showTime;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Seats seatCategory;
+    @JsonIgnore
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    private List<SeatCategory> seatCategory = new ArrayList<>();
 
-    private int availableSeatCount;
 
     public Show() {
     }
 
-    public Show(long showID, Movie movie, String showDate, String showTime, Seats seatCategory, int availableSeatCount) {
+    public Show(long showID, Movie movie, String showDate, String showTime, List<SeatCategory> seatCategory) {
         this.showID = showID;
         this.movie = movie;
         this.showDate = showDate;
         this.showTime = showTime;
         this.seatCategory = seatCategory;
-        this.availableSeatCount = availableSeatCount;
     }
 
     public String getShowDate() {
@@ -69,21 +69,12 @@ public class Show {
         this.movie = movie;
     }
 
-
-    public Seats getSeatCategory() {
+    public List<SeatCategory> getSeatCategory() {
         return seatCategory;
     }
 
-    public void setSeatCategory(Seats seatCategory) {
+    public void setSeatCategory(List<SeatCategory> seatCategory) {
         this.seatCategory = seatCategory;
-    }
-
-    public int getAvailableSeatCount() {
-        return availableSeatCount;
-    }
-
-    public void setAvailableSeatCount(int availableSeatCount) {
-        this.availableSeatCount = availableSeatCount;
     }
 
     @Override
@@ -94,7 +85,6 @@ public class Show {
                 ", showDate='" + showDate + '\'' +
                 ", showTime='" + showTime + '\'' +
                 ", seatCategory=" + seatCategory +
-                ", availableSeatCount=" + availableSeatCount +
                 '}';
     }
 }

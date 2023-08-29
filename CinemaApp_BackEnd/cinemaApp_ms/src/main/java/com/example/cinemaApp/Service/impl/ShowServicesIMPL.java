@@ -1,14 +1,8 @@
 package com.example.cinemaApp.Service.impl;
 
 import com.example.cinemaApp.DTO.MovieDTO;
-import com.example.cinemaApp.Entity.CinemaUser;
-import com.example.cinemaApp.Entity.Movie;
-import com.example.cinemaApp.Entity.Seats;
-import com.example.cinemaApp.Entity.Show;
-import com.example.cinemaApp.Repository.CinemaUserRepository;
-import com.example.cinemaApp.Repository.MovieRepository;
-import com.example.cinemaApp.Repository.SeatsRepository;
-import com.example.cinemaApp.Repository.ShowRepository;
+import com.example.cinemaApp.Entity.*;
+import com.example.cinemaApp.Repository.*;
 import com.example.cinemaApp.Service.ShowServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -39,6 +33,9 @@ public class ShowServicesIMPL implements ShowServices {
     private SeatsRepository seatsRepository;
 
     @Autowired
+    private SeatCategoryRepository seatCategoryRepository;
+
+    @Autowired
     private CinemaUserRepository cinemaUserRepository;
 
     public void createShowsForMovie(MovieDTO movie,int id) {
@@ -54,18 +51,21 @@ public class ShowServicesIMPL implements ShowServices {
 
         for (String date : movie.getShowDates()) {
             for (String time : movie.getShowTimes()) {
-                for (Seats seatCategory : seatCategories) {
-                    System.out.println(date);
-                    System.out.println(time);
-                    System.out.println(seatCategory);
 
                     Show show = new Show();
+
                     show.setMovie(tempMovie);
                     show.setShowDate(date);
                     show.setShowTime(time);
-                    show.setSeatCategory(seatCategory);
-                    show.setAvailableSeatCount(seatCategory.getCount());
-                    showRepository.save(show);
+                    Show temp = showRepository.save(show);
+
+                for (Seats seatCategory : seatCategories) {
+                    SeatCategory seatCategory1 = new SeatCategory();
+                    seatCategory1.setType(seatCategory.getType());
+                    seatCategory1.setAvailableSeatCount(seatCategory.getCount());
+                    seatCategory1.setShow(temp);
+
+                    seatCategoryRepository.save(seatCategory1);
                 }
             }
         }

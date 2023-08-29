@@ -1,19 +1,22 @@
 package com.example.cinemaApp.DTO;
 
+import com.example.cinemaApp.Entity.SeatCategory;
+
+import java.util.List;
+
 public class ShowDTO {
 
     private long showID;
     private String showDate;
     private String showTime;
-    private String seatCategory;
-    private int availableSeatCount;
 
-    public ShowDTO(long showID, String showDate, String showTime, String seatCategory, int availableSeatCount) {
+    private List<SeatCategoryDTO> seatCategoryDTO;
+
+    public ShowDTO(long showID, String showDate, String showTime, List<SeatCategoryDTO> seatCategoryDTO) {
         this.showID = showID;
         this.showDate = showDate;
         this.showTime = showTime;
-        this.seatCategory = seatCategory;
-        this.availableSeatCount = availableSeatCount;
+        this.seatCategoryDTO = seatCategoryDTO;
     }
 
     public ShowDTO() {
@@ -43,20 +46,12 @@ public class ShowDTO {
         this.showTime = showTime;
     }
 
-    public String getSeatCategory() {
-        return seatCategory;
+    public List<SeatCategoryDTO> getSeatCategoryDTO() {
+        return seatCategoryDTO;
     }
 
-    public void setSeatCategory(String seatCategory) {
-        this.seatCategory = seatCategory;
-    }
-
-    public int getAvailableSeatCount() {
-        return availableSeatCount;
-    }
-
-    public void setAvailableSeatCount(int availableSeatCount) {
-        this.availableSeatCount = availableSeatCount;
+    public void setSeatCategoryDTO(List<SeatCategoryDTO> seatCategoryDTO) {
+        this.seatCategoryDTO = seatCategoryDTO;
     }
 
     @Override
@@ -65,8 +60,7 @@ public class ShowDTO {
                 "showID=" + showID +
                 ", showDate='" + showDate + '\'' +
                 ", showTime='" + showTime + '\'' +
-                ", seatCategory='" + seatCategory + '\'' +
-                ", availableSeatCount=" + availableSeatCount +
+                ", seatCategoryDTO=" + seatCategoryDTO +
                 '}';
     }
 }
