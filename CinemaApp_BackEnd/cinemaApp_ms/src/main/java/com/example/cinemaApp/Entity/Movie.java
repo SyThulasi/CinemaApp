@@ -1,7 +1,9 @@
 package com.example.cinemaApp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +27,10 @@ public class Movie {
     @JoinColumn(name = "cinema_id")
     private CinemaUser cinemaUser;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Show> shows = new ArrayList<>();
+
     public Movie(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, List<String> showDates, List<String> showTimes, CinemaUser cinemaUser) {
         this.movieID = movieID;
         this.movieName = movieName;
@@ -40,6 +46,15 @@ public class Movie {
 
     public Movie() {
     }
+
+    public List<Show> getShows() {
+        return shows;
+    }
+
+    public void setShows(List<Show> shows) {
+        this.shows = shows;
+    }
+
 
     public int getMovieID() {
         return movieID;

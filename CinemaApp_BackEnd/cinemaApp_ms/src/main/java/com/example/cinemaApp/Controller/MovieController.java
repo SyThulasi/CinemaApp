@@ -25,8 +25,8 @@ public class MovieController {
     @PostMapping(path = "/save")
     public Movie saveMovie(@RequestBody MovieDTO movieDTO){
 //            System.out.println(movieDTO);
-        movieService.saveMovie(movieDTO);
-        return null;
+
+        return movieService.saveMovie(movieDTO);
     }
 
 

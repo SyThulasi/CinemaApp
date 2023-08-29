@@ -1,6 +1,5 @@
 package com.example.cinemaApp.DTO;
 
-import com.example.cinemaApp.Entity.CinemaUser;
 import java.time.LocalDate;
 import java.util.List;
 
