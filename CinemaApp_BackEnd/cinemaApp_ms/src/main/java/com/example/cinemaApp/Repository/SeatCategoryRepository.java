@@ -8,4 +8,6 @@ import java.util.List;
 public interface SeatCategoryRepository extends JpaRepository<SeatCategory, Long> {
 
     List<SeatCategory> findByShow(Show show);
+    SeatCategory findByShowAndType(Show show, String type);
+
 }

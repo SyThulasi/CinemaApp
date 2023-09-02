@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout } from "../../src/redux/userSlice";
@@ -6,11 +7,17 @@ import "./Navbar.css";
 
 export default function () {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.user);
 
   function handleLoginClick(path) {
     navigate(path);
+  }
+
+  function handleLogOut() { 
+    dispatch(logout());
+    navigate("/login");
   }
 
   return (
@@ -66,7 +73,7 @@ export default function () {
                   <button
                     class="btn btn-outline-danger button1"
                     type="submit"
-                    onClick={(e) => logout()}
+                    onClick={(e) => handleLogOut()}
                   >
                     Log out
                   </button>

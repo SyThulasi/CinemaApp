@@ -2,7 +2,6 @@ package com.example.cinemaApp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ public class CinemaUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cinemaId;
+
     private String cinemaName;
     private String city;
     private String phoneNo;

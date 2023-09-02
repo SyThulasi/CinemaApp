@@ -11,6 +11,7 @@ public class SeatCategory {
 
     private String type;
     private int availableSeatCount;
+
     @ManyToOne
     @JoinColumn(name = "showID")
     private Show show;

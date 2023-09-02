@@ -3,6 +3,7 @@ package com.example.cinemaApp.Service.impl;
 import com.example.cinemaApp.DTO.CinemaUserDTO;
 import com.example.cinemaApp.DTO.LoginDTO;
 import com.example.cinemaApp.Entity.CinemaUser;
+import com.example.cinemaApp.Entity.Show;
 import com.example.cinemaApp.Mapper.CinemaUserMapper;
 import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Service.CinemaUserService;
@@ -55,12 +56,16 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
             String password = loginDTO.getPassword();
             String encodedPassword = cinemaUser1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            CinemaUser cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
-
-            return cinemaUser;
+            if(isPwdRight){
+                CinemaUser cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
+                System.out.println(cinemaUser);
+                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                return cinemaUser;
+            }
         }else {
 //            return new LoginResponse("User not exits", false);
         }
+
         return null;
     }
 

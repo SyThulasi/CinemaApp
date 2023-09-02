@@ -1,5 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import DataHandler from "../../Handler/DataHandler";
+import axios from "axios";
 import "./seat.css"
 
 const seatData = [
@@ -32,6 +36,31 @@ const seatData = [
 
 export default function Seat() {
   const navigate = useNavigate();
+  const [seats, setSeats] = useState([]);
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const fetchSeats = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8090/api/v1/cinemaUser/Seats/save/Seats/${currentUser.cinemaId}`,
+          {
+            auth: {
+              username: DataHandler.getFromSession("username"),
+
+              password: DataHandler.getFromSession("password"),
+            },
+          }
+        );
+        setSeats(response.data);
+      } catch (error) {
+        console.error("Error fetching seats:", error);
+      }
+    };
+
+    fetchSeats();
+  }, []);
 
     function handleClick(path) {
       navigate(path);
@@ -58,11 +87,11 @@ export default function Seat() {
                 <th scope="col">Seat Type</th>
                 <th scope="col">Price</th>
                 <th scope="col">Seat Count</th>
-                <th scope="col">Seat Count</th>
+                <th scope="col">Edit</th>
               </tr>
             </thead>
             <tbody>
-              {seatData.map((seat, index) => (
+              {seats.map((seat, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{seat.type}</td>

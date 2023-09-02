@@ -14,6 +14,10 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
 
+    public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
     public void sendMessage(String message){
         LOGGER.info(String.format("message sent %s", message));
         kafkaTemplate.send("movie",message);

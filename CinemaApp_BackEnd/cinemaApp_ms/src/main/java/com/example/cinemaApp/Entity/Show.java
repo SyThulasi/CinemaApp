@@ -22,7 +22,7 @@ public class Show {
     private String showTime;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "show",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SeatCategory> seatCategory = new ArrayList<>();
 
 

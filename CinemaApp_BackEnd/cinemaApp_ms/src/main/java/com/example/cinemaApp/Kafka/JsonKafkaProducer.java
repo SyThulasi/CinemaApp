@@ -1,7 +1,8 @@
 package com.example.cinemaApp.Kafka;
 
-import com.example.cinemaApp.DTO.CinemaUserDTO;
+import com.example.cinemaApp.DTO.BookingRequestDTO;
 import com.example.cinemaApp.DTO.MoviePublishDTO;
+import com.example.cinemaApp.DTO.ReservationConfirmationDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class JsonKafkaProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
 
-//    private KafkaTemplate<String, CinemaUserDTO> kafkaTemplate;
     private KafkaTemplate<String, MoviePublishDTO> kafkaTemplate;
 
     @Autowired
@@ -37,6 +37,31 @@ public class JsonKafkaProducer {
                 .build();
 
         kafkaTemplate.send(message);
+    }
+
+    public void sendReservationStatusMessage(ReservationConfirmationDTO data){
+
+        LOGGER.info(String.format("Message sent -> %s", data.toString()));
+
+        Message<ReservationConfirmationDTO> message = MessageBuilder
+                .withPayload(data)
+                .setHeader(KafkaHeaders.TOPIC, "Bookings_Confirm")
+                .build();
+
+        kafkaTemplate.send(message);
+    }
+
+    public void sendDummyMessage(BookingRequestDTO data){
+
+        LOGGER.info(String.format("Message sent -> %s", data.toString()));
+
+        Message<BookingRequestDTO> message = MessageBuilder
+                .withPayload(data)
+                .setHeader(KafkaHeaders.TOPIC, "Bookings")
+                .build();
+
+        kafkaTemplate.send(message);
+        LOGGER.info(String.format("Message sent -> %s", data.toString()));
     }
 
 }

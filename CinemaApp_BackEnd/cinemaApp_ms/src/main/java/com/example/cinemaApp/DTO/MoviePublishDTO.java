@@ -1,10 +1,12 @@
 package com.example.cinemaApp.DTO;
 
 import com.example.cinemaApp.Entity.CinemaUser;
+import com.example.cinemaApp.Entity.Seats;
 import com.example.cinemaApp.Entity.Show;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class MoviePublishDTO {
 
@@ -17,8 +19,9 @@ public class MoviePublishDTO {
     private String imgURL;
     private CinemaUser cinemaUser;
     private List<ShowDTO> shows;
+    private Map<String, Double> seats;
 
-    public MoviePublishDTO(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, CinemaUser cinemaUser, List<ShowDTO> shows) {
+    public MoviePublishDTO(int movieID, String movieName, String description, String language, int durationMinutes, LocalDate releaseDate, String imgURL, CinemaUser cinemaUser, List<ShowDTO> shows, Map<String, Double> seats) {
         this.movieID = movieID;
         this.movieName = movieName;
         this.description = description;
@@ -28,6 +31,7 @@ public class MoviePublishDTO {
         this.imgURL = imgURL;
         this.cinemaUser = cinemaUser;
         this.shows = shows;
+        this.seats = seats;
     }
 
     public MoviePublishDTO() {
@@ -105,6 +109,14 @@ public class MoviePublishDTO {
         this.shows = shows;
     }
 
+    public Map<String, Double> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Map<String, Double> seats) {
+        this.seats = seats;
+    }
+
     @Override
     public String toString() {
         return "MoviePublishDTO{" +
@@ -117,6 +129,7 @@ public class MoviePublishDTO {
                 ", imgURL='" + imgURL + '\'' +
                 ", cinemaUser=" + cinemaUser +
                 ", shows=" + shows +
+                ", seats=" + seats +
                 '}';
     }
 }

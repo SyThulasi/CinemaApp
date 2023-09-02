@@ -40,8 +40,6 @@ public class ShowServicesIMPL implements ShowServices {
 
     public void createShowsForMovie(MovieDTO movie,int id) {
         Movie tempMovie = movieRepository.findById(id);
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println(movie.getMovieID());
 
         System.out.println(tempMovie);
         Optional<CinemaUser> cinemaUser = cinemaUserRepository.findById(movie.getCinemaId());

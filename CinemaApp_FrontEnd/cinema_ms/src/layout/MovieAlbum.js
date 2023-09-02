@@ -37,7 +37,8 @@ export default function MovieAlbum({
   movieName,
   language,
   duration,
-  country,
+  releaseDate,
+  description,
   imageSrc,
 }) {
   return (
@@ -47,13 +48,13 @@ export default function MovieAlbum({
         <div class="card-body">
           <h5 class="card-title">{movieName}</h5>
           <p class="card-text">
-            {language} Movie from {country}
+            {description}
           </p>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{language}</li>
-          <li class="list-group-item">{country}</li>
-          <li class="list-group-item">{duration}</li>
+          <li class="list-group-item">From : {releaseDate}</li>
+          <li class="list-group-item">Duration : {duration} Mins</li>
         </ul>
         <div class="card-body custom-card-body">
           <button class="btn btn-outline-danger " type="submit">

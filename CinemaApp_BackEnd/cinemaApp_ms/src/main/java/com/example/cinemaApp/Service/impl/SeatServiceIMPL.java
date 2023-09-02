@@ -2,6 +2,7 @@ package com.example.cinemaApp.Service.impl;
 
 import com.example.cinemaApp.DTO.SeatsDTO;
 import com.example.cinemaApp.DTO.UpdateSeatDTO;
+import com.example.cinemaApp.Entity.CinemaUser;
 import com.example.cinemaApp.Entity.Seats;
 import com.example.cinemaApp.Mapper.SeatsMapper;
 import com.example.cinemaApp.Repository.SeatsRepository;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -47,5 +49,10 @@ public class SeatServiceIMPL implements SeatService {
             return seatEntity;
         }
         return null;
+    }
+
+    @Override
+    public List<Seats> getSeatsFromCinema(CinemaUser cinemaUser) {
+        return seatsRepository.findByCinemaUser(cinemaUser);
     }
 }

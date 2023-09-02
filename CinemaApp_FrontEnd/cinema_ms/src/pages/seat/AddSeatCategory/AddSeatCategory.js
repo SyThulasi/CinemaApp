@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SeatActions } from "../../../Actions/SeatActions";
 import axios from "../../register/api/axios";
+import DataHandler from "../../../Handler/DataHandler";
 const URL = "/Seats/save";
 
 const AddSeatCategory = () => {
@@ -38,16 +39,16 @@ const AddSeatCategory = () => {
               const response = await axios.post(
                 URL,
                 {
-                  cinema_id: 1,
+                  cinemaId: currentUser.cinemaId,
                   type: category,
                   count: seatCount,
                   price: ticketPrice,
                 },
                 {
                   auth: {
-                    username: "regal",
+                    username: DataHandler.getFromSession("username"),
 
-                    password: "Regal@123",
+                    password: DataHandler.getFromSession("password"),
                   },
                 }
               );

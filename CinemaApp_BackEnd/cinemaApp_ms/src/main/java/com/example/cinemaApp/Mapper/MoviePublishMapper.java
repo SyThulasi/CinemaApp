@@ -7,13 +7,12 @@ import com.example.cinemaApp.DTO.ShowDTO;
 import com.example.cinemaApp.Entity.*;
 import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Repository.SeatCategoryRepository;
+import com.example.cinemaApp.Repository.SeatsRepository;
 import com.example.cinemaApp.Repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class MoviePublishMapper {
@@ -27,6 +26,9 @@ public class MoviePublishMapper {
     @Autowired
     private SeatCategoryRepository seatCategoryRepository;
 
+    @Autowired
+    private SeatsRepository seatsRepository;
+
     public MoviePublishDTO mapIn(Movie movie, int id){
         MoviePublishDTO temp = new MoviePublishDTO();
 
@@ -38,11 +40,21 @@ public class MoviePublishMapper {
         temp.setLanguage(movie.getLanguage());
         temp.setReleaseDate(movie.getReleaseDate());
 
+        System.out.println(id);
+        System.out.println(".................................................................");
         Optional<CinemaUser> cinemaUsers = cinemaUserRepository.findById(id);
-
+        System.out.println("###################################################################");
         if (cinemaUsers.isPresent()) {
 
             CinemaUser cinemaUser = (CinemaUser) cinemaUsers.get();
+
+            List<Seats> seatsMap = seatsRepository.findByCinemaUser(cinemaUser);
+            Map<String, Double> tempSeats = new HashMap<>();
+            for(Seats seats1 : seatsMap){
+                tempSeats.put(seats1.getType(),seats1.getPrice());
+            }
+            temp.setSeats(tempSeats);
+
             List<Show> shows = showRepository.findByMovie(movie);
             List<ShowDTO> showDTOs = new ArrayList<>();
 
@@ -67,14 +79,12 @@ public class MoviePublishMapper {
                         simplifiedShow.setSeatCategoryDTO(seatCategoryDTOs);
                 showDTOs.add(simplifiedShow);
             }
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println(showDTOs);
             temp.setCinemaUser(cinemaUser);
             temp.setShows(showDTOs);
 
             return temp;
         } else {
-            System.out.println("Cinema Uset Cannot be found!");
+            System.out.println("Cinema User Cannot be found!");
             return null;
         }
 

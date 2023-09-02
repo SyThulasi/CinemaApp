@@ -41,7 +41,7 @@ public class CinemaUserController {
         userRet.put("userName", cinemaUser.getUserName());
 
 
-        return userRet;
+        return cinemaUser;
     }
 
     @PutMapping("/save")
