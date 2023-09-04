@@ -41,14 +41,23 @@ public class CinemaUserController {
         userRet.put("userName", cinemaUser.getUserName());
 
 
-        return cinemaUser;
+        return userRet;
     }
 
     @PutMapping("/save")
     //@RequestParam("id") int id,
-    public CinemaUser updateProfile(@RequestBody CinemaUserDTO cinemaUserDTO){
+    public Object updateProfile(@RequestBody CinemaUserDTO cinemaUserDTO){
 
-        return cinemaUserService.updateProfile(cinemaUserDTO);
+        CinemaUser cinemaUser = cinemaUserService.updateProfile(cinemaUserDTO);
+        Map<String, Object> userRet = new HashMap<>();
+        userRet.put("cinemaId", cinemaUser.getCinemaId());
+        userRet.put("cinemaName", cinemaUser.getCinemaName());
+        userRet.put("city", cinemaUser.getCity());
+        userRet.put("phoneNo", cinemaUser.getPhoneNo());
+        userRet.put("userName", cinemaUser.getUserName());
+
+
+        return userRet;
     }
 
 

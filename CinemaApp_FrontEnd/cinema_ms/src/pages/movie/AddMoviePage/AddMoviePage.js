@@ -20,7 +20,9 @@ import {
   message,
   TimePicker,
 } from "antd";
-
+import {
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./AddMoviePage.css";
@@ -100,7 +102,27 @@ const AddMoviePage = () => {
     userRef.current.focus();
   }, []);
   //-------------------------------------------------------------------------------------------
-
+  const [seats, setSeats] = useState([]);
+  
+    useEffect(() => {
+      const fetchSeats = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:8090/api/v1/cinemaUser/Seats/save/Seats/${currentUser.cinemaId}`,
+            {
+              auth: {
+                username: DataHandler.getFromSession("username"),
+                password: DataHandler.getFromSession("password"),
+              },
+            }
+          );
+          setSeats(response.data);
+        } catch (error) {
+          console.error("Error fetching seats:", error);
+        }
+      };
+      fetchSeats();
+    }, []);
   
 
   //----------------------------Date and Time Functions----------------------------------------
@@ -119,32 +141,38 @@ const AddMoviePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        URL,
-        {
-          cinemaId: currentUser.cinemaId,
-          durationMinutes: duration,
-          releaseDate: releaseDate,
-          description: description,
-          imgURL: "../../public/Images/jailer.jpg",
-          language: language,
-          movieName: movieName,
-          showDates: showArray,
-          showTimes: showTimes.split(","),
-        },
-        {
-          auth: {
-            username: DataHandler.getFromSession("username"),
+    if (seats.length === 0) {
+      setErrMsg("You need to enter your seat details first.");
+    } else {
+      {
+        try {
+          const response = await axios.post(
+            URL,
+            {
+              cinemaId: currentUser.cinemaId,
+              durationMinutes: duration,
+              releaseDate: releaseDate,
+              description: description,
+              imgURL: "../../public/Images/jailer.jpg",
+              language: language,
+              movieName: movieName,
+              showDates: showArray,
+              showTimes: showTimes.split(","),
+            },
+            {
+              auth: {
+                username: DataHandler.getFromSession("username"),
 
-            password: DataHandler.getFromSession("password"),
-          },
+                password: DataHandler.getFromSession("password"),
+              },
+            }
+          );
+          navigate("/movies");
+          console.log("Movie Successfully added.....");
+        } catch (err) {
+          console.log(err);
         }
-      );
-      navigate("/movies");
-      console.log("Movie Successfully added.....");
-    } catch (err) {
-      console.log(err)
+      }
     }
   };
 
@@ -216,7 +244,13 @@ const AddMoviePage = () => {
             value={releaseDate}
             required
           />
+
           <label htmlFor="phoneNo">Add Show Dates:</label>
+          <p className="errmsg" aria-live="assertive">
+            <FontAwesomeIcon icon={faInfoCircle} />
+            You need to click the 'Add Date' button after <br />
+            selecting everydate in the calendar.
+          </p>
           <Form.Item
             name="showDay"
             rules={[

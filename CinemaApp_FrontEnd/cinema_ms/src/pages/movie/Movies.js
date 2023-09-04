@@ -64,6 +64,7 @@ useEffect(() => {
               language={movie.language}
               duration={movie.durationMinutes}
               imageSrc={movie.imgURL}
+              path={`/showMovie/${movie.movieID}`}
             />
           </div>
         ))}

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ShowRepository extends JpaRepository<Show, Long>{
     List<Show> findByMovie(Movie movie);
+
     Optional<Show> findById(Long id);
 
     Show findByShowID(Long showID);

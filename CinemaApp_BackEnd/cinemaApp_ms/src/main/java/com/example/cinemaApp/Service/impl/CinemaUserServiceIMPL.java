@@ -3,7 +3,6 @@ package com.example.cinemaApp.Service.impl;
 import com.example.cinemaApp.DTO.CinemaUserDTO;
 import com.example.cinemaApp.DTO.LoginDTO;
 import com.example.cinemaApp.Entity.CinemaUser;
-import com.example.cinemaApp.Entity.Show;
 import com.example.cinemaApp.Mapper.CinemaUserMapper;
 import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Service.CinemaUserService;
@@ -13,9 +12,6 @@ import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
 
 @Component
 @Scope
@@ -58,8 +54,6 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if(isPwdRight){
                 CinemaUser cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
-                System.out.println(cinemaUser);
-                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                 return cinemaUser;
             }
         }else {

@@ -6,32 +6,6 @@ import DataHandler from "../../Handler/DataHandler";
 import axios from "axios";
 import "./seat.css"
 
-const seatData = [
-  {
-    cinema_id: 1,
-    type: "Superier",
-    count: 25,
-    price: "1500",
-  },
-  {
-    cinema_id: 1,
-    type: "Balcony",
-    count: 50,
-    price: "1000",
-  },
-  {
-    cinema_id: 1,
-    type: "Normal",
-    count: 200,
-    price: "800",
-  },
-  {
-    cinema_id: 1,
-    type: "Lower",
-    count: 100,
-    price: "500",
-  },
-];
 
 
 export default function Seat() {
@@ -54,6 +28,7 @@ export default function Seat() {
           }
         );
         setSeats(response.data);
+        console.log(seats)
       } catch (error) {
         console.error("Error fetching seats:", error);
       }
@@ -101,7 +76,7 @@ export default function Seat() {
                     <button
                       className="button2"
                       type="button"
-                      onClick={(e) => handleClick("/editSeat")}
+                      onClick={(e) => handleClick(`/editSeat/${seat.id}`)}
                     >
                       Edit
                     </button>

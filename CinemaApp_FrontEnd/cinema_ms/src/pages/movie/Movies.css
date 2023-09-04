@@ -1,6 +1,7 @@
 .custom-section3 {
     display: flex;
     justify-content: center;
+    min-height: 500px;
     align-items: center;
       width: 100%;/* Set your desired height here */
       background-image: url('/public/Images/background.jpg');

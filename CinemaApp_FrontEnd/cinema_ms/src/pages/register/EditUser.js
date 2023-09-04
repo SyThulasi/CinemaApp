@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect, useParam } from "react";
+import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
+import { useDispatch } from "react-redux";
 import {
   faCheck,
   faTimes,
@@ -20,6 +22,7 @@ const EditUser = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userRef = useRef();
   const errRef = useRef();
@@ -119,9 +122,10 @@ const EditUser = () => {
         }
       );
         
-        DataHandler.setToSession("password", newPwd);
-        console.log(DataHandler.getFromSession("username"));
+      DataHandler.setToSession("password", newPwd);
+      dispatch(loginSuccess(response.data));
       navigate("/movies");
+      
       console.log(response?.data);
       console.log(response?.accessToken);
       console.log(JSON.stringify(response));

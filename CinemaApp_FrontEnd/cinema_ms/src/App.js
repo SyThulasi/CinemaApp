@@ -12,6 +12,8 @@ import EditUser from './pages/register/EditUser';
 import AddSeatCategory from './pages/seat/AddSeatCategory/AddSeatCategory';
 import { useSelector } from "react-redux";
 import EditSeatCategory from './pages/seat/AddSeatCategory/EditSeat';
+import { ShowMovie } from './pages/movie/ShowMovie';
+import { ShowBookings } from './pages/movie/ShowBookings';
 
 
 function App() {
@@ -28,10 +30,30 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/seat" element={currentUser ? <Seat /> : <Login />} />
-        <Route path="/edituser" element={currentUser ? <EditUser /> : <Login />} />
-        <Route path="/addMovie" element={currentUser ? <AddMoviePage/> : <Login />}/>
-        <Route path="/addSeat" element={currentUser ? <AddSeatCategory /> : <Login />} />
-        <Route path="/editSeat" element={currentUser ? <EditSeatCategory /> : <Login />} />
+        <Route
+          path="/edituser"
+          element={currentUser ? <EditUser /> : <Login />}
+        />
+        <Route
+          path="/addMovie"
+          element={currentUser ? <AddMoviePage /> : <Login />}
+        />
+        <Route
+          path="/addSeat"
+          element={currentUser ? <AddSeatCategory /> : <Login />}
+        />
+        <Route
+          path="/editSeat/:seatId"
+          element={currentUser ? <EditSeatCategory /> : <Login />}
+        />
+        <Route
+          path="/showMovie/:movieID"
+          element={currentUser ? <ShowMovie /> : <Login />}
+        />
+        <Route
+          path="/showBooking/:showID"
+          element={currentUser ? <ShowBookings /> : <Login />}
+        />
       </Routes>
     </Router>
   );

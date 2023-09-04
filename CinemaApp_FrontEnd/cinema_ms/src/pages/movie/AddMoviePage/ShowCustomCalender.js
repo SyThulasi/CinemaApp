@@ -141,7 +141,7 @@ const handleDateSelect = (date) => {
         onPanelChange={onPanelChange}
       />
       <div>
-        <Button onClick={addShowDate}>Add show</Button>
+        <Button onClick={addShowDate}>Add Date</Button>
       </div>
     </div>
   );
