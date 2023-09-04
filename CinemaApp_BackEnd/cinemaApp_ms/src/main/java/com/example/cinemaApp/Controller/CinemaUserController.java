@@ -7,6 +7,7 @@ import com.example.cinemaApp.DTO.LoginDTO;
 import com.example.cinemaApp.Service.CinemaUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,25 +24,26 @@ public class CinemaUserController {
 
 
     @PostMapping(path = "/save")
-    public String registerUser(@RequestBody CinemaUserDTO cinemaUserDTO){
+    public ResponseEntity<?> registerUser(@RequestBody CinemaUserDTO cinemaUserDTO){
         return cinemaUserService.register(cinemaUserDTO);
     }
 
     @PostMapping(path = "/login")
-    public Object loginEmployee(@RequestBody LoginDTO loginDTO)
+    public ResponseEntity<?> loginEmployee(@RequestBody LoginDTO loginDTO)
     {
-        CinemaUser cinemaUser = cinemaUserService.loginEmployee(loginDTO);
+//        CinemaUser cinemaUser = cinemaUserService.loginEmployee(loginDTO);
+//
+//
+//        Map<String, Object> userRet = new HashMap<>();
+//        userRet.put("cinemaId", cinemaUser.getCinemaId());
+//        userRet.put("cinemaName", cinemaUser.getCinemaName());
+//        userRet.put("city", cinemaUser.getCity());
+//        userRet.put("phoneNo", cinemaUser.getPhoneNo());
+//        userRet.put("userName", cinemaUser.getUserName());
 
 
-        Map<String, Object> userRet = new HashMap<>();
-        userRet.put("cinemaId", cinemaUser.getCinemaId());
-        userRet.put("cinemaName", cinemaUser.getCinemaName());
-        userRet.put("city", cinemaUser.getCity());
-        userRet.put("phoneNo", cinemaUser.getPhoneNo());
-        userRet.put("userName", cinemaUser.getUserName());
-
-
-        return userRet;
+        return  cinemaUserService.loginEmployee(loginDTO);
+        //return userRet;
     }
 
     @PutMapping("/save")

@@ -84,10 +84,8 @@ const Register = () => {
         catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('Username Taken');
             }
             errRef.current.focus();
         }

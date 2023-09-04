@@ -1,5 +1,5 @@
 .movie-card{
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .fixed-height-img {
@@ -10,3 +10,4 @@
     height: 40px;
     /* Set your desired height here */
 }
+

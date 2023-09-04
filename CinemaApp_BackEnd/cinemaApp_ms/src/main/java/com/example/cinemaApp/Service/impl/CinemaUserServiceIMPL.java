@@ -8,10 +8,14 @@ import com.example.cinemaApp.Repository.CinemaUserRepository;
 import com.example.cinemaApp.Service.CinemaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Scope
@@ -28,7 +32,13 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
     private CinemaUserMapper cinemaUserMapper;
 
     @Override
-    public String register(CinemaUserDTO cinemaUserDTO) {
+    public ResponseEntity<?> register(CinemaUserDTO cinemaUserDTO) {
+
+        if(cinemaUserRepository.findByUserName(cinemaUserDTO.getUserName()) != null){
+            String errorMessage = "UserName address already exists";
+            return ResponseEntity.badRequest().body(errorMessage);
+            // throw new UserAlreadyExistException("User already exists for this email");
+        }
         CinemaUser cinemaUser = new CinemaUser(
 
                 cinemaUserDTO.getCinemaId(),
@@ -40,12 +50,12 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
 
         );
         cinemaUserRepository.save(cinemaUser);
-        return cinemaUser.getCinemaName();
+        return ResponseEntity.ok(cinemaUserDTO.getUserName());
     }
     CinemaUserDTO cinemaUserDTO;
 
     @Override
-    public CinemaUser loginEmployee(@CurrentSecurityContext(expression="authentication?.name")LoginDTO loginDTO) {
+    public ResponseEntity<?> loginEmployee(@CurrentSecurityContext(expression="authentication?.name")LoginDTO loginDTO) {
         String msg = "";
         CinemaUser cinemaUser1 = cinemaUserRepository.findByUserName(loginDTO.getUserName());
         if (cinemaUser1 != null) {
@@ -54,13 +64,21 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if(isPwdRight){
                 CinemaUser cinemaUser = cinemaUserRepository.findOneByUserNameAndPassword(loginDTO.getUserName(), encodedPassword);
-                return cinemaUser;
+                Map<String, Object> userRet = new HashMap<>();
+                userRet.put("cinemaId", cinemaUser.getCinemaId());
+                userRet.put("cinemaName", cinemaUser.getCinemaName());
+                userRet.put("city", cinemaUser.getCity());
+                userRet.put("phoneNo", cinemaUser.getPhoneNo());
+                userRet.put("userName", cinemaUser.getUserName());
+                return ResponseEntity.ok(userRet);
+            }
+            else {
+                return ResponseEntity.badRequest().body("Incorrect Password...!");
             }
         }else {
-//            return new LoginResponse("User not exits", false);
+           return ResponseEntity.badRequest().body("User Not Exist...!");
         }
 
-        return null;
     }
 
     @Override

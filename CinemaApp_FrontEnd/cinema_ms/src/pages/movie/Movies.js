@@ -54,21 +54,23 @@ useEffect(() => {
           Add Movie
         </button>
       </div>
-      <div className="col-10 position-relative movie-album-container">
-        {movies.map((movie, index) => (
-          <div key={index} className="movie-album">
-            <MovieAlbum
-              movieName={movie.movieName}
-              description={movie.description}
-              releaseDate={movie.releaseDate}
-              language={movie.language}
-              duration={movie.durationMinutes}
-              imageSrc={movie.imgURL}
-              path={`/showMovie/${movie.movieID}`}
-            />
-          </div>
-        ))}
-      </div>
+
+        <div className="col-10 position-relative movie-album-container">
+          {movies.map((movie, index) => (
+            <div key={index} className="movie-album">
+              <MovieAlbum
+                movieName={movie.movieName}
+                description={movie.description}
+                releaseDate={movie.releaseDate}
+                language={movie.language}
+                duration={movie.durationMinutes}
+                imageSrc={movie.imgURL}
+                path={`/showMovie/${movie.movieID}`}
+              />
+            </div>
+          ))}
+        </div>
+    
     </section>
   );
 }
