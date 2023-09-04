@@ -85,15 +85,10 @@ const AddMoviePage = () => {
   const navigate = useNavigate();
 
   const [movieName, setMovieName] = useState("");
-
   const [description, setDescription] = useState("");
-
   const [language, setLanguage] = useState(languageList[0]);
-
   const [duration, setDuration] = useState("");
-
   const [releaseDate, setReleaseDate] = useState("");
-
   const [showTimes, setShowTimes] = useState("");
 
   const [errMsg, setErrMsg] = useState("");
@@ -101,6 +96,24 @@ const AddMoviePage = () => {
   useEffect(() => {
     userRef.current.focus();
   }, []);
+  //------------Upload Image-------------------------------------------------------------------
+
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const imagePath = `./Images/${file.name}`;
+
+    const imageUrl = process.env.PUBLIC_URL + imagePath;
+
+    setImage(imageUrl);
+    console.log(imageUrl);
+
+
+  };
+
+  
+
   //-------------------------------------------------------------------------------------------
   const [seats, setSeats] = useState([]);
   
@@ -153,7 +166,7 @@ const AddMoviePage = () => {
               durationMinutes: duration,
               releaseDate: releaseDate,
               description: description,
-              imgURL: "../../public/Images/jailer.jpg",
+              imgURL: image,
               language: language,
               movieName: movieName,
               showDates: showArray,
@@ -275,6 +288,13 @@ const AddMoviePage = () => {
             value={showTimes}
             required
           />
+          <label htmlFor="showDay">Upload Image:</label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleImageChange}
+          ></input>
           <button>Add</button>
         </form>
       </section>
