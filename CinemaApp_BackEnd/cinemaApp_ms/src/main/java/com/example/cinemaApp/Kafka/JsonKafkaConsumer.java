@@ -34,10 +34,10 @@ public class JsonKafkaConsumer {
     @Autowired
     private JsonKafkaProducer jsonKafkaProducer;
 
-    @KafkaListener(topics = "movie_json", groupId = "${spring.kafka.consumer.group-id}")
-    public void consume(CinemaUserDTO user) {
-        LOGGER.info(String.format("Json Message received -> %s", user.toString()));
-    }
+//    @KafkaListener(topics = "movie_json", groupId = "${spring.kafka.consumer.group-id}")
+//    public void consume(CinemaUserDTO user) {
+//        LOGGER.info(String.format("Json Message received -> %s", user.toString()));
+//    }
 
 
     @KafkaListener(topics = "Bookings", groupId = "${spring.kafka.consumer.group-id}")

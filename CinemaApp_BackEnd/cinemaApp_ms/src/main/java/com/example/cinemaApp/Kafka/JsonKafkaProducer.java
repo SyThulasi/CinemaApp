@@ -27,6 +27,7 @@ public class JsonKafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    // Send Movies
     public void sendMessage(MoviePublishDTO data){
 
         LOGGER.info(String.format("Message sent -> %s", data.toString()));

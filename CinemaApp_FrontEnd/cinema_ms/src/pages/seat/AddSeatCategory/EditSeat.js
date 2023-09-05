@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { SeatActions } from "../../../Actions/SeatActions";
 import axios from "../../register/api/axios";
 import DataHandler from "../../../Handler/DataHandler";
 import "./edit.css";
@@ -30,11 +29,6 @@ const EditSeatCategory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //---------------------------------------------------------------------------------------
-
-  // const handleSubmit = (e) => { 
-  //   navigate("/seat");
-  // }
 
   //--------------Set Initial Values------------------------------------------------------
 

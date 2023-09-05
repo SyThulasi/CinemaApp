@@ -29,7 +29,6 @@ import "./AddMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import ShowCustomCalendar from "./ShowCustomCalender";
 import { useDispatch, useSelector } from "react-redux";
-import { MovieActions } from "/home//thulasiyan/Documents/CinemaApp/CinemaApp_FrontEnd/cinema_ms/src/Actions/MovieActions";
 import axios from "../../register/api/axios";
 import DataHandler from "../../../Handler/DataHandler";
 
