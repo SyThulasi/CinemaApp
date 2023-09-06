@@ -3,13 +3,10 @@
     justify-content: center;
     min-height: 500px;
     align-items: center;
-      width: 100%;/* Set your desired height here */
+      width: 100%;
       background-image: url('/public/Images/background.jpg');
       backdrop-filter: blur(5px);
     }
-
-
-    
 
     .movie-album-container {
       padding-top: 20px;

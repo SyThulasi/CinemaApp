@@ -5,7 +5,6 @@
     align-items: center;
     height: 1300px;
     background-image: url('/public/Images/background.jpg');
-    /* background-color: #000; */
     backdrop-filter: blur(10px);
     color: white;
   }
