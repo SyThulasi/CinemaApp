@@ -104,8 +104,8 @@ const EditUser = () => {
     }
 
     try {
-      const response = await axios.post(
-        URL,
+      const response = await axios.put(
+        `http://localhost:8090/api/v1/cinemaUser/user/save`,
         {
           cinemaId: currentUser.cinemaId,
           cinemaName: cinemaName,
@@ -124,7 +124,7 @@ const EditUser = () => {
         
       DataHandler.setToSession("password", newPwd);
       dispatch(loginSuccess(response.data));
-      navigate("/movies");
+      navigate("/login");
       
       console.log(response?.data);
       console.log(response?.accessToken);

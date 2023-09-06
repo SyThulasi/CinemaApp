@@ -60,9 +60,6 @@ export default function () {
             <div class="form1 ">
               {currentUser ? (
                 <>
-                  {/* <a class="nav-link active" aria-current="page" href="/home">
-                  {currentUser.cinemaName}
-                  </a> */}
                   <button
                     class="btn btn-outline-danger button1"
                     type="submit"

@@ -72,9 +72,6 @@ const languageList = [
 const AddMoviePage = () => {
 
   const { currentUser } = useSelector((state) => state.user);
-  // const jsonString = JSON.stringify(currentUser);
-  // const userId = jsonString.split(",")
-  // const id = userId[0].split(":")
 
   const dispatch = useDispatch();
 
