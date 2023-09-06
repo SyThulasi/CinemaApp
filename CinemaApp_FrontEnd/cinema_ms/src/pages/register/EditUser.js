@@ -76,9 +76,10 @@ const EditUser = () => {
       DataHandler.setToSession("username", user);
 
     if (oldPwd.length === 0) {
-      if (pwd.length == 0 && matchPwd == 0) {
+      if (pwd.length === 0 && matchPwd === 0) {
 
-              setNewPwd(DataHandler.getFromSession("password"));
+        setNewPwd(DataHandler.getFromSession("password"));
+        //---------------------------------------------
       } else {
         setErrMsg("Old Password is not correct");
         return;
@@ -86,11 +87,15 @@ const EditUser = () => {
     } else {
         if (oldPwd == DataHandler.getFromSession("password")) {
             if (pwd == matchPwd) {
-                if (!v2) {
-                    setErrMsg("Invalid Entry");
-                    return;
-                }
-                setNewPwd(pwd);
+              if (!v2) {
+                setErrMsg("Invalid Entry");
+                return;
+              }
+              setNewPwd(pwd);
+              //-----------------------------------------
+            } else {
+              setErrMsg("Password does not match..!");
+              return;
             }
         }
         else { 

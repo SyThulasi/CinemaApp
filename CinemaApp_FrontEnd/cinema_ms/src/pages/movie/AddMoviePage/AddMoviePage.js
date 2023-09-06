@@ -258,7 +258,7 @@ const AddMoviePage = () => {
           <p className="errmsg" aria-live="assertive">
             <FontAwesomeIcon icon={faInfoCircle} />
             You need to click the 'Add Date' button after <br />
-            selecting everydate in the calendar.
+            selecting every date in the calendar.
           </p>
           <Form.Item
             name="showDay"
