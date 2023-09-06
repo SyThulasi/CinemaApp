@@ -129,6 +129,7 @@ const EditUser = () => {
         
       DataHandler.setToSession("password", newPwd);
       dispatch(loginSuccess(response.data));
+      dispatch(logout());
       navigate("/login");
       
       console.log(response?.data);

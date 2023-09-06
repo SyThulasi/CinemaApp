@@ -27,7 +27,7 @@ public class CinemaUserMapper {
         temp.setCity(cinemaUserEntity.getCity());
         temp.setPhoneNo(cinemaUserEntity.getPhoneNo());
         temp.setUserName(cinemaUserEntity.getUserName());
-        temp.setPassword(cinemaUserEntity.getPassword());
+//        temp.setPassword(cinemaUserEntity.getPassword());
         return temp;
     }
 

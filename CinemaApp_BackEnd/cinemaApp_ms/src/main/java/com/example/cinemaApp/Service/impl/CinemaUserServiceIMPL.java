@@ -73,9 +73,11 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
                 return ResponseEntity.ok(userRet);
             }
             else {
+                System.out.println("Incorrect Password...!");
                 return ResponseEntity.badRequest().body("Incorrect Password...!");
             }
         }else {
+            System.out.println("User Not Exist...!");
            return ResponseEntity.badRequest().body("User Not Exist...!");
         }
 
@@ -86,7 +88,10 @@ public class CinemaUserServiceIMPL implements CinemaUserService {
         CinemaUser cinemaUserEntity =new CinemaUser();
         cinemaUserEntity = cinemaUserMapper.mapIn(cinemaUserDTO);
         cinemaUserEntity.setCinemaId(cinemaUserDTO.getCinemaId());
+        cinemaUserEntity.setPassword(this.passwordEncoder.encode(cinemaUserDTO.getPassword()));
         cinemaUserRepository.save(cinemaUserEntity);
+
+        System.out.println("Edited Succesfully");
         return cinemaUserEntity;
     }
 
