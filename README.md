@@ -39,7 +39,7 @@ The Cinema Ticket Reservation App is designed to facilitate the reservation of m
 
 our app is divided into two parts: the cinema side and the user side. I have completed the cinema side, while my college has worked on the user side. These two parts are implemented as microservices, and we have connected them using apache kafka
 
-Git Links
+Git Links for user side
 [Back end ](https://github.com/SathsaraniAththanayaka/CinemaApp_Customer_Backend.git)
 [Front end ](https://github.com/SathsaraniAththanayaka/CinemaApp_Customer_Frontend.git)
 
