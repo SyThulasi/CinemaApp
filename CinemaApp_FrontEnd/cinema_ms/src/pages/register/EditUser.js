@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useParam } from "react";
 import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userSlice";
 import {
   faCheck,
   faTimes,
