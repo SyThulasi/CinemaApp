@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Cinema Ticket Reservation App is designed to facilitate the reservation of movie tickets at your cinema. It allows you to create and manage cinema profiles, add and edit movies, update seat inventory for showtimes on different days, and validate and confirm reservations. This application is built using Java 8, Spring Boot, and Gradle on the back end and Ant Design Pro with React on the front end. It follows a micro-service architecture for scalability and robustness.
+The Cinema Ticket Reservation App is designed to facilitate the reservation of movie tickets at your cinema. It allows you to create and manage cinema profiles, add and edit movies, update seat inventory for showtimes on different days, and validate and confirm reservations. This application is built using Java 8, Spring Boot, and Gradle on the back end and React on the front end. It follows a micro-service architecture for scalability and robustness.
 
 
 ## Functionalities
