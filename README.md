@@ -32,9 +32,20 @@ The Cinema Ticket Reservation App is designed to facilitate the reservation of m
 - **Version Control:** Git.
 
   ## You can use docker to run this web
+Cinema Side Docker files
+  - Front end command : docker pull sythulasi/cinema-app-front-end:v2.0
+  - Back end command : docker pull sythulasi/cinema-app:v2.0
 
-  - Front end command : docker pull sythulasi/cinema-app-front-end:v2.0 docker  
-  - Back end command : docker pull sythulasi/cinema-app:v2.0 
+Customer Side Docker files
+  - Front end command : docker pull sathsarani15920/customer_side_frontend:3.0
+  - Back end command : docker pull sathsarani15920/customer_side_backend:3.0
+
+To Run 
+
+$ docker run -d --network host -p 8080:8080 sathsarani15920/customer_side_backend:3.0
+$ docker run -d --network host -p 8090:8090 sythulasi/cinema-app:v2.0
+$ docker run -d -p 3000:3000 sythulasi/cinema-app-front-end:v2.0
+$ docker run -d -p 3001:3001 sathsarani15920/customer_side_frontend:3.0
   
 
 our app is divided into two parts: the cinema side and the user side. I have completed the cinema side, while my college has worked on the user side. These two parts are implemented as microservices, and we have connected them using apache kafka
